@@ -1,0 +1,17 @@
+.content {
+  margin-top: 5%;
+}
+
+.title {
+  text-align: center;
+}
+
+.bullets {
+  list-style-type: none;
+  margin: 30px;
+  padding: 0px;
+}
+
+.auth-button {
+  text-align: center;
+}
