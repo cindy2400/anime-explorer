@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   animes: [],
+  anime: {},
 };
 
 export const animeSlice = createSlice({
@@ -9,8 +10,10 @@ export const animeSlice = createSlice({
   initialState: initialState,
   reducers: {
     getTrendingAnime(state, action) {
-      console.log(action.payload.Page.media);
       state.animes = action.payload.Page.media;
+    },
+    getDetailAnime(state, action) {
+      state.anime = action.payload.Media;
     },
   },
 });

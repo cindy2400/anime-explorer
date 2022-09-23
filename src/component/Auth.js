@@ -1,13 +1,11 @@
-import React from "react";
-import Card from "./ui/Card";
-import styles from "./Auth.module.css";
-import { useRef } from "react";
+import React, { useRef } from "react";
+import { useDispatch } from "react-redux";
 import { loginData, registerData } from "../store/auth/auth-fetcher";
-import { useSelector, useDispatch } from "react-redux";
+import styles from "./Auth.module.css";
+import Card from "./ui/Card";
 
 const Auth = ({ type }) => {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.auth.token)
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -15,18 +13,16 @@ const Auth = ({ type }) => {
     e.preventDefault();
 
     const data = {
-      "email": `${emailRef.current.value}`,
-      "password": `${passwordRef.current.value}`
-    }
+      email: `${emailRef.current.value}`,
+      password: `${passwordRef.current.value}`,
+    };
 
-    if(type === 'login'){
-      dispatch(loginData(data))
-    }else{
-      dispatch(registerData(data))
+    if (type === "login") {
+      dispatch(loginData(data));
+    } else {
+      dispatch(registerData(data));
     }
   };
-
-  console.log(token)
 
   return (
     <div className={styles.content}>

@@ -24,3 +24,19 @@ export const GET_ANIME = gql`
     }
   }
 `;
+
+export const GET_DETAIL_ANIME = gql`
+  query ($id: Int) {
+    Media(id: $id, type: ANIME) {
+      id
+      title {
+        romaji
+        english
+        native
+      }
+      status
+      genres
+      description
+    }
+  }
+`;

@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 import "./App.css";
 import Auth from "./component/Auth";
+import DetailAnime from "./component/DetailAnime";
 import Home from "./component/Home";
 import Header from "./component/ui/Header";
 
@@ -20,14 +21,17 @@ function App() {
         <Auth type="register" />
       </Route>
       {token && (
-        <Route path="/home">
-          <Home />
-        </Route>
-      )}
-      {token && (
-        <Route path="/login">
-          <Redirect to="/home" />
-        </Route>
+        <>
+          <Route path="/home" exact>
+            <Home />
+          </Route>
+          <Route path="/login">
+            <Redirect to="/home" />
+          </Route>
+          <Route path="/home/:animeId">
+            <DetailAnime />
+          </Route>
+        </>
       )}
     </div>
   );
