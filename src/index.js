@@ -6,8 +6,8 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import { client } from "./store/anime/anime-fetcher";
 import store from "./store/store";
+import { client } from "./util/apollo";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

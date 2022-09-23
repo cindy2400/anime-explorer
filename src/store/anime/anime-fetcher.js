@@ -1,11 +1,6 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { client } from "../../util/apollo";
 import { GET_ANIME, GET_DETAIL_ANIME } from "./anime-query";
 import { animeActions } from "./anime-slice";
-
-export const client = new ApolloClient({
-  uri: "https://graphql.anilist.co",
-  cache: new InMemoryCache(),
-});
 
 export const fetchAnime = () => {
   return (dispatch) => {
