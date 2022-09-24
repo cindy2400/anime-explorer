@@ -13,11 +13,11 @@ export const authSlice = createSlice({
       state.isLogin = true;
       state.token = action.payload;
     },
-    logout(state, action) {
+    logout(state) {
       state.isLogin = false;
       state.token = "";
     },
   },
 });
 
-export const authActions = authSlice.actions
+export const authActions = authSlice.actions;

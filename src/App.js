@@ -11,25 +11,35 @@ function App() {
   return (
     <div>
       <Header />
-      <Route path="/">
-        <Redirect to="/login" />
-      </Route>
-      <Route path="/login">
-        <Auth type="login" />
-      </Route>
-      <Route path="/register">
-        <Auth type="register" />
-      </Route>
+      {!token && (
+        <>
+          <Route path="/">
+            <Redirect to="/login" />
+          </Route>
+          <Route path="/login">
+            <Auth type="login" />
+          </Route>
+          <Route path="/register">
+            <Auth type="register" />
+          </Route>
+        </>
+      )}
       {token && (
         <>
           <Route path="/home" exact>
-            <Home />
+            <Home type="trending" />
           </Route>
           <Route path="/login">
             <Redirect to="/home" />
           </Route>
           <Route path="/home/:animeId">
             <DetailAnime />
+          </Route>
+          <Route path="/popular">
+            <Home type="popular" />
+          </Route>
+          <Route path="/upcoming">
+            <Home type="upcoming" />
           </Route>
         </>
       )}

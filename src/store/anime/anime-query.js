@@ -45,7 +45,7 @@ export const GET_DETAIL_ANIME = gql`
         native
       }
       coverImage {
-        extraLarge
+        large
         color
       }
       status
