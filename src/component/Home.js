@@ -1,17 +1,27 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchAnime } from "../store/anime/anime-fetcher";
+import {
+  fetchPopularAnime,
+  fetchTrendingAnime,
+  fetchUpcomingAnime,
+} from "../store/anime/anime-fetcher";
 import styles from "./Home.module.css";
 import Card from "./ui/Card";
 
-const Home = () => {
+const Home = ({ type }) => {
   const dispatch = useDispatch();
   const animes = useSelector((state) => state.home.animes);
 
   useEffect(() => {
-    dispatch(fetchAnime());
-  }, [dispatch]);
+    if (type === "trending") {
+      dispatch(fetchTrendingAnime());
+    } else if (type === "popular") {
+      dispatch(fetchPopularAnime());
+    } else if (type === "upcoming") {
+      dispatch(fetchUpcomingAnime());
+    }
+  }, [dispatch, type]);
 
   return (
     <div className={styles.container}>

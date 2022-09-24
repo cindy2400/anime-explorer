@@ -1,12 +1,17 @@
 import { client } from "../../util/apollo";
-import { GET_ANIME, GET_DETAIL_ANIME } from "./anime-query";
+import {
+  GET_DETAIL_ANIME,
+  GET_POPULAR_ANIME,
+  GET_TRENDING_ANIME,
+  GET_UPCOMING_ANIME,
+} from "./anime-query";
 import { animeActions } from "./anime-slice";
 
-export const fetchAnime = () => {
+export const fetchTrendingAnime = () => {
   return (dispatch) => {
     client
       .query({
-        query: GET_ANIME,
+        query: GET_TRENDING_ANIME,
         variables: {
           page: 1,
           perPage: 20,
@@ -14,6 +19,38 @@ export const fetchAnime = () => {
       })
       .then((response) =>
         dispatch(animeActions.getTrendingAnime(response.data))
+      )
+      .catch((err) => console.error(err));
+  };
+};
+
+export const fetchPopularAnime = () => {
+  return (dispatch) => {
+    client
+      .query({
+        query: GET_POPULAR_ANIME,
+        variables: {
+          page: 1,
+          perPage: 20,
+        },
+      })
+      .then((response) => dispatch(animeActions.getPopularAnime(response.data)))
+      .catch((err) => console.error(err));
+  };
+};
+
+export const fetchUpcomingAnime = () => {
+  return (dispatch) => {
+    client
+      .query({
+        query: GET_UPCOMING_ANIME,
+        variables: {
+          page: 1,
+          perPage: 20,
+        },
+      })
+      .then((response) =>
+        dispatch(animeActions.getUpcomingAnime(response.data))
       )
       .catch((err) => console.error(err));
   };

@@ -12,6 +12,12 @@ export const animeSlice = createSlice({
     getTrendingAnime(state, action) {
       state.animes = action.payload.Page.media;
     },
+    getPopularAnime(state, action) {
+      state.animes = action.payload.Page.media;
+    },
+    getUpcomingAnime(state, action) {
+      state.animes = action.payload.Page.media;
+    },
     getDetailAnime(state, action) {
       state.anime = action.payload.Media;
     },

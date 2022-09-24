@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const GET_ANIME = gql`
+export const GET_TRENDING_ANIME = gql`
   query ($page: Int, $perPage: Int) {
     Page(page: $page, perPage: $perPage) {
       pageInfo {
@@ -18,17 +18,51 @@ export const GET_ANIME = gql`
           large
           color
         }
-        type
-        genres
-        startDate {
-          year
-          month
-          day
+      }
+    }
+  }
+`;
+
+export const GET_POPULAR_ANIME = gql`
+  query ($page: Int, $perPage: Int) {
+    Page(page: $page, perPage: $perPage) {
+      pageInfo {
+        total
+        perPage
+      }
+      media(type: ANIME, sort: POPULARITY_DESC) {
+        id
+        title {
+          romaji
+          english
+          native
         }
-        endDate {
-          year
-          month
-          day
+        coverImage {
+          large
+          color
+        }
+      }
+    }
+  }
+`;
+
+export const GET_UPCOMING_ANIME = gql`
+  query ($page: Int, $perPage: Int) {
+    Page(page: $page, perPage: $perPage) {
+      pageInfo {
+        total
+        perPage
+      }
+      media(type: ANIME, sort: START_DATE_DESC) {
+        id
+        title {
+          romaji
+          english
+          native
+        }
+        coverImage {
+          large
+          color
         }
       }
     }
