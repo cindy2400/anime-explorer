@@ -19,7 +19,7 @@ const Home = () => {
         return (
           <Link key={anime.id} to={`/home/${anime.id}`}>
             <Card className={styles.card}>
-              <p>{anime.title.english}</p>
+              <p>{anime.title.english || anime.title.romaji}</p>
               <img src={anime.coverImage.large} alt="cover anime" />
             </Card>
           </Link>

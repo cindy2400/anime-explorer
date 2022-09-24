@@ -21,7 +21,7 @@ const DetailAnime = () => {
   }
   return (
     <Card>
-      <h1>{animeDetail.title.english}</h1>
+      <h1>{animeDetail.title.english || animeDetail.title.romaji}</h1>
       {animeDetail.genres.map((genre) => (
         <h6 key={genre}>{genre}</h6>
       ))}

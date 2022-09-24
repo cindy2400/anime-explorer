@@ -7,7 +7,7 @@ export const GET_ANIME = gql`
         total
         perPage
       }
-      media(type: ANIME) {
+      media(type: ANIME, sort: TRENDING_DESC) {
         id
         title {
           romaji
@@ -20,6 +20,16 @@ export const GET_ANIME = gql`
         }
         type
         genres
+        startDate {
+          year
+          month
+          day
+        }
+        endDate {
+          year
+          month
+          day
+        }
       }
     }
   }
@@ -33,6 +43,10 @@ export const GET_DETAIL_ANIME = gql`
         romaji
         english
         native
+      }
+      coverImage {
+        extraLarge
+        color
       }
       status
       genres
