@@ -7,6 +7,7 @@ import {
   fetchUpcomingAnime,
 } from "../store/anime/anime-fetcher";
 import styles from "./Home.module.css";
+import Badge from "./ui/Badge";
 import Card from "./ui/Card";
 
 const Home = ({ type }) => {
@@ -27,9 +28,10 @@ const Home = ({ type }) => {
     <div className={styles.container}>
       {animes.map((anime) => {
         return (
-          <Link key={anime.id} to={`/home/${anime.id}`}>
+          <Link key={anime.id} to={`/home/${anime.id}`} className={styles.link}>
             <Card className={styles.card}>
               <p>{anime.title.english || anime.title.romaji}</p>
+              <Badge>{`${anime.season}, ${anime.seasonYear}`}</Badge>
               <img src={anime.coverImage.large} alt="cover anime" />
             </Card>
           </Link>

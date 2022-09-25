@@ -3,6 +3,7 @@ import { Redirect, Route } from "react-router-dom";
 import "./App.css";
 import Auth from "./component/Auth";
 import DetailAnime from "./component/DetailAnime";
+import FavoritesAnime from "./component/FavoritesAnime";
 import Home from "./component/Home";
 import Header from "./component/ui/Header";
 
@@ -40,6 +41,9 @@ function App() {
           </Route>
           <Route path="/upcoming">
             <Home type="upcoming" />
+          </Route>
+          <Route path="/favorites">
+            <FavoritesAnime />
           </Route>
         </>
       )}

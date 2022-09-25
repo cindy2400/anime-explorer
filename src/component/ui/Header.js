@@ -40,6 +40,9 @@ const Header = () => {
               <Link to="/upcoming" className={styles.link}>
                 Upcoming
               </Link>
+              <Link to="/favorites" className={styles.link}>
+                Favorites
+              </Link>
               <Link
                 to="/logout"
                 onClick={logoutHandler}

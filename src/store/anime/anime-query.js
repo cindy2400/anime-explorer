@@ -14,6 +14,8 @@ export const GET_TRENDING_ANIME = gql`
           english
           native
         }
+        season
+        seasonYear
         coverImage {
           large
           color
@@ -37,6 +39,8 @@ export const GET_POPULAR_ANIME = gql`
           english
           native
         }
+        season
+        seasonYear
         coverImage {
           large
           color
@@ -60,6 +64,8 @@ export const GET_UPCOMING_ANIME = gql`
           english
           native
         }
+        season
+        seasonYear
         coverImage {
           large
           color
@@ -82,6 +88,8 @@ export const GET_DETAIL_ANIME = gql`
         large
         color
       }
+      season
+      seasonYear
       status
       genres
       description
