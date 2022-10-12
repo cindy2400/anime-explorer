@@ -14,10 +14,10 @@ const DetailAnime = () => {
   const favAnime = useSelector((state) => state.home.animeFavorites);
   const animeId = param.animeId;
   const isFavoriteAnime = useMemo(
-    () => favAnime.some((fav) => fav.id == animeId),
+    () => favAnime.some((fav) => +fav.id === +animeId),
     [animeId, favAnime]
   );
-  console.log(isFavoriteAnime);
+
   useEffect(() => {
     dispatch(fetchDetailAnime(animeId));
   }, [dispatch, animeId]);

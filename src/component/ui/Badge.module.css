@@ -1,9 +1,9 @@
 .badge {
   width: fit-content;
   height: fit-content;
-  padding: 5px;
+  padding: 7px;
   margin-bottom: 10px;
   border-radius: 20px;
-  background-color: rgb(197, 83, 57);
+  background-color: rgb(25, 34, 125);
   color: white;
 }
