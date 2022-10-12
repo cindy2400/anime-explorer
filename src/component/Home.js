@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -15,6 +15,12 @@ const Home = ({ type }) => {
   const animes = useSelector((state) => state.home.animes);
   const [filteredAnime, setFilteredAnime] = useState([]);
   const [searchText, setSearchText] = useState([]);
+  const [filterSeason, setFilterSeason] = useState("all");
+
+  let seasons = useMemo(
+    () => [...new Set(animes.map((anime) => anime.season))],
+    [animes]
+  );
 
   useEffect(() => {
     if (type === "trending") {
@@ -28,19 +34,38 @@ const Home = ({ type }) => {
 
   useEffect(() => {
     const searchTimeout = setTimeout(() => {
-      setFilteredAnime(
-        animes.filter((anime) =>
-          anime.title.english.toLowerCase().includes(searchText)
-        )
-      );
+      let animeFilter = animes;
+      if (filterSeason === "all") {
+        animeFilter = animes.filter((anime) => {
+          const animeTitle = anime.title.english || anime.title.romaji;
+          return animeTitle.toLowerCase().includes(searchText);
+        });
+      } else if (filterSeason !== "all" && searchText !== "") {
+        animeFilter = animes.filter((anime) => {
+          const animeTitle = anime.title.english || anime.title.romaji;
+          return (
+            animeTitle.toLowerCase().includes(searchText) &&
+            anime.season.toLowerCase() === filterSeason
+          );
+        });
+      } else {
+        animeFilter = animes.filter((anime) => {
+          return anime.season.toLowerCase() === filterSeason;
+        });
+      }
+      setFilteredAnime(animeFilter);
     }, 500);
     return () => {
       clearTimeout(searchTimeout);
     };
-  }, [animes, searchText]);
+  }, [animes, filterSeason, searchText]);
 
   const changeSearchTextHandler = (e) => {
     setSearchText(e.target.value);
+  };
+
+  const changeFilterSeasonHandler = (e) => {
+    setFilterSeason(e.target.value);
   };
 
   return (
@@ -52,6 +77,14 @@ const Home = ({ type }) => {
           className={styles.input}
           onChange={changeSearchTextHandler}
         />
+        <select className={styles.select} onChange={changeFilterSeasonHandler}>
+          <option value="all">All</option>
+          {seasons.map((season) => (
+            <option key={season} value={season.toLowerCase()}>
+              {season}
+            </option>
+          ))}
+        </select>
       </form>
       <div className={styles.container}>
         {filteredAnime.map((anime) => {

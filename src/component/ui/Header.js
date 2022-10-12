@@ -37,9 +37,9 @@ const Header = () => {
               <Link to="/popular" className={styles.link}>
                 Popular
               </Link>
-              <Link to="/upcoming" className={styles.link}>
+              {/* <Link to="/upcoming" className={styles.link}>
                 Upcoming
-              </Link>
+              </Link> */}
               <Link to="/favorites" className={styles.link}>
                 Favorites
               </Link>

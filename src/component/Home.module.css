@@ -24,3 +24,8 @@
 .input {
   height: 30px;
 }
+
+.select {
+  height: 30px;
+  margin-left: 20px;
+}
