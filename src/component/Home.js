@@ -27,11 +27,16 @@ const Home = ({ type }) => {
   }, [dispatch, type]);
 
   useEffect(() => {
-    setFilteredAnime(
-      animes.filter((anime) =>
-        anime.title.english.toLowerCase().includes(searchText)
-      )
-    );
+    const searchTimeout = setTimeout(() => {
+      setFilteredAnime(
+        animes.filter((anime) =>
+          anime.title.english.toLowerCase().includes(searchText)
+        )
+      );
+    }, 500);
+    return () => {
+      clearTimeout(searchTimeout);
+    };
   }, [animes, searchText]);
 
   const changeSearchTextHandler = (e) => {
