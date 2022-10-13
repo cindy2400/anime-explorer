@@ -35,32 +35,59 @@ const DetailAnime = () => {
   }
   return (
     <Card>
-      <h1>{animeDetail.title.english || animeDetail.title.romaji}</h1>
-      <div className={styles.container}>
+      {animeDetail.bannerImage && (
         <img
-          className={styles["container-image"]}
-          src={animeDetail.coverImage.large}
-          alt="anime cover"
+          className={styles["container-banner"]}
+          src={animeDetail.bannerImage}
+          alt="anime banner"
         />
+      )}
+      <div className={styles.container}>
+        <div className={styles["container-column"]}>
+          <img
+            className={styles["container-image"]}
+            src={animeDetail.coverImage.large}
+            alt="anime cover"
+          />
+          <Card className={styles["container-info"]}>
+            <h3>Season</h3>
+            <p>{animeDetail.season}</p>
+            <h3>Status</h3>
+            <p>{animeDetail.status}</p>
+            <h3>Genre</h3>
+            {animeDetail.genres.map((genre) => (
+              <p key={genre}>{genre}</p>
+            ))}
+          </Card>
+        </div>
+
         <div className={styles["container-property"]}>
-          {animeDetail.genres.map((genre) => (
-            <h6 key={genre}>{genre}</h6>
-          ))}
-          <p>{animeDetail.description}</p>
-          <button
-            onClick={() =>
-              isFavoriteAnime
-                ? removeFavoriteAnimeHandler(animeDetail.id)
-                : favoriteAnimeHandler(animeDetail)
-            }
-            className={
-              isFavoriteAnime
-                ? styles["button-remove"]
-                : styles["button-favorite"]
-            }
-          >
-            {isFavoriteAnime ? "Remove" : "Favorite"}
-          </button>
+          <Card>
+            <h1>{animeDetail.title.english || animeDetail.title.romaji}</h1>
+            <p>{animeDetail.description}</p>
+            <button
+              onClick={() =>
+                isFavoriteAnime
+                  ? removeFavoriteAnimeHandler(animeDetail.id)
+                  : favoriteAnimeHandler(animeDetail)
+              }
+              className={
+                isFavoriteAnime
+                  ? styles["button-remove"]
+                  : styles["button-favorite"]
+              }
+            >
+              {isFavoriteAnime ? "Remove" : "Favorite"}
+            </button>
+            <h3>Trailer</h3>
+            {animeDetail.trailer !== null && (
+              <iframe
+                className={styles["container-iframe"]}
+                src={`https://www.youtube.com/embed/${animeDetail.trailer.id}`}
+                title="Anime Trailer"
+              />
+            )}
+          </Card>
         </div>
       </div>
     </Card>

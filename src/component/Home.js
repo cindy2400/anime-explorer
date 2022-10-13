@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -97,7 +98,12 @@ const Home = ({ type }) => {
               <Card className={styles.card}>
                 <p>{anime.title.english || anime.title.romaji}</p>
                 <Badge>{`${anime.season}, ${anime.seasonYear}`}</Badge>
-                <img src={anime.coverImage.large} alt="cover anime" />
+                <LazyLoadImage
+                  width={230}
+                  height="auto"
+                  src={anime.coverImage.large}
+                  effect="blur"
+                />
               </Card>
             </Link>
           );

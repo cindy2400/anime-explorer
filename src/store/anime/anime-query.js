@@ -90,6 +90,10 @@ export const GET_DETAIL_ANIME = gql`
       }
       season
       seasonYear
+      bannerImage
+      trailer {
+        id
+      }
       status
       genres
       description

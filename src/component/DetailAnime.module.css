@@ -2,9 +2,20 @@
   display: flex;
 }
 
+.container-column {
+  flex-direction: column;
+}
+
 .container-image {
   flex-grow: 2;
   margin: 10px;
+  height: fit-content;
+  width: fit-content;
+}
+
+.container-banner {
+  margin: 10px;
+  width: 100%;
 }
 
 .container-property {
@@ -12,13 +23,22 @@
   margin: 10px;
 }
 
+.container-iframe {
+  width: 550px;
+  height: 350px;
+}
+
+.container-info {
+  width: 200px;
+}
+
 .button-favorite {
   background-color: #fd6060;
   border: none;
   border-radius: 5px;
   height: 40px;
-  width: 80px;
-  font-weight: bolder;
+  width: 100px;
+  font-weight: 700;
 }
 
 .button-remove {
@@ -26,6 +46,6 @@
   border: none;
   border-radius: 5px;
   height: 40px;
-  width: 80px;
-  font-weight: bolder;
+  width: 100px;
+  font-weight: 700;
 }
