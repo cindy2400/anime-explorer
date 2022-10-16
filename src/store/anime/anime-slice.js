@@ -22,6 +22,9 @@ export const animeSlice = createSlice({
     getDetailAnime(state, action) {
       state.anime = action.payload.Media;
     },
+    removeDetailAnime(state) {
+      state.anime = {};
+    },
     addFavoriteAnime(state, action) {
       state.animeFavorites.push(action.payload);
     },

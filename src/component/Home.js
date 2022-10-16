@@ -7,6 +7,7 @@ import {
   fetchTrendingAnime,
   fetchUpcomingAnime,
 } from "../store/anime/anime-fetcher";
+import { animeActions } from "../store/anime/anime-slice";
 import styles from "./Home.module.css";
 import Badge from "./ui/Badge";
 import Card from "./ui/Card";
@@ -69,6 +70,10 @@ const Home = ({ type }) => {
     setFilterSeason(e.target.value);
   };
 
+  const renewDetailHandler = () => {
+    dispatch(animeActions.removeDetailAnime());
+  };
+
   return (
     <div>
       <form className={styles.form}>
@@ -94,6 +99,7 @@ const Home = ({ type }) => {
               key={anime.id}
               to={`/home/${anime.id}`}
               className={styles.link}
+              onClick={renewDetailHandler}
             >
               <Card className={styles.card}>
                 <p>{anime.title.english || anime.title.romaji}</p>
