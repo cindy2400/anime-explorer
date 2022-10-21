@@ -1,63 +1,19 @@
 import { gql } from "@apollo/client";
 
-export const GET_TRENDING_ANIME = gql`
-  query ($page: Int, $perPage: Int, $season: MediaSeason) {
+export const GET_ANIME = gql`
+  query (
+    $page: Int
+    $perPage: Int
+    $season: MediaSeason
+    $search: String
+    $sort: [MediaSort]
+  ) {
     Page(page: $page, perPage: $perPage) {
       pageInfo {
         total
         perPage
       }
-      media(type: ANIME, sort: TRENDING_DESC, season: $season) {
-        id
-        title {
-          romaji
-          english
-          native
-        }
-        season
-        seasonYear
-        coverImage {
-          large
-          color
-        }
-      }
-    }
-  }
-`;
-
-export const GET_POPULAR_ANIME = gql`
-  query ($page: Int, $perPage: Int, $season: MediaSeason) {
-    Page(page: $page, perPage: $perPage) {
-      pageInfo {
-        total
-        perPage
-      }
-      media(type: ANIME, sort: POPULARITY_DESC, season: $season) {
-        id
-        title {
-          romaji
-          english
-          native
-        }
-        season
-        seasonYear
-        coverImage {
-          large
-          color
-        }
-      }
-    }
-  }
-`;
-
-export const GET_UPCOMING_ANIME = gql`
-  query ($page: Int, $perPage: Int, $season: MediaSeason) {
-    Page(page: $page, perPage: $perPage, season: $season) {
-      pageInfo {
-        total
-        perPage
-      }
-      media(type: ANIME, sort: START_DATE_DESC) {
+      media(type: ANIME, sort: $sort, season: $season, search: $search) {
         id
         title {
           romaji
@@ -97,36 +53,6 @@ export const GET_DETAIL_ANIME = gql`
       status
       genres
       description
-    }
-  }
-`;
-
-export const GET_SEARCH_ANIME = gql`
-  query ($page: Int, $perPage: Int, $search: String, $season: MediaSeason) {
-    Page(page: $page, perPage: $perPage) {
-      pageInfo {
-        total
-        perPage
-      }
-      media(
-        type: ANIME
-        sort: TRENDING_DESC
-        search: $search
-        season: $season
-      ) {
-        id
-        title {
-          romaji
-          english
-          native
-        }
-        season
-        seasonYear
-        coverImage {
-          large
-          color
-        }
-      }
     }
   }
 `;

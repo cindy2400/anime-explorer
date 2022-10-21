@@ -17,7 +17,6 @@ const Home = ({ type }) => {
   const history = useHistory();
   const location = useLocation();
   const animes = useSelector((state) => state.home.animes);
-  // const [filteredAnime, setFilteredAnime] = useState([]);
   const [filterSeason, setFilterSeason] = useState("all");
 
   const queryParams = new URLSearchParams(location.search);
@@ -109,31 +108,3 @@ const Home = ({ type }) => {
 };
 
 export default Home;
-
-// useEffect(() => {
-//   const searchTimeout = setTimeout(() => {
-//     let animeFilter = animes;
-//     if (filterSeason === "all") {
-//       animeFilter = animes.filter((anime) => {
-//         const animeTitle = anime.title.english || anime.title.romaji;
-//         return animeTitle.toLowerCase().includes(searchText);
-//       });
-//     } else if (filterSeason !== "all" && searchText !== "") {
-//       animeFilter = animes.filter((anime) => {
-//         const animeTitle = anime.title.english || anime.title.romaji;
-//         return (
-//           animeTitle.toLowerCase().includes(searchText) &&
-//           anime.season.toLowerCase() === filterSeason
-//         );
-//       });
-//     } else {
-//       animeFilter = animes.filter((anime) => {
-//         return anime.season.toLowerCase() === filterSeason;
-//       });
-//     }
-//     setFilteredAnime(animeFilter);
-//   }, 500);
-//   return () => {
-//     clearTimeout(searchTimeout);
-//   };
-// }, [animes, filterSeason, searchText]);
