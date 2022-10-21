@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import {
   fetchPopularAnime,
   fetchTrendingAnime,
@@ -14,10 +14,16 @@ import Card from "./ui/Card";
 
 const Home = ({ type }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
   const animes = useSelector((state) => state.home.animes);
-  const [filteredAnime, setFilteredAnime] = useState([]);
-  const [searchText, setSearchText] = useState([]);
+  // const [filteredAnime, setFilteredAnime] = useState([]);
   const [filterSeason, setFilterSeason] = useState("all");
+
+  const queryParams = new URLSearchParams(location.search);
+  const searchQuery = queryParams.get("search");
+  const searchTemp = searchQuery === null ? "" : searchQuery;
+  const [searchText, setSearchText] = useState(searchTemp);
 
   let seasons = useMemo(
     () => [...new Set(animes.map((anime) => anime.season))],
@@ -26,41 +32,23 @@ const Home = ({ type }) => {
 
   useEffect(() => {
     if (type === "trending") {
-      dispatch(fetchTrendingAnime());
+      dispatch(fetchTrendingAnime(searchTemp, filterSeason));
     } else if (type === "popular") {
-      dispatch(fetchPopularAnime());
+      dispatch(fetchPopularAnime(searchTemp, filterSeason));
     } else if (type === "upcoming") {
-      dispatch(fetchUpcomingAnime());
+      dispatch(fetchUpcomingAnime(searchTemp, filterSeason));
     }
-  }, [dispatch, type]);
+  }, [dispatch, searchTemp, filterSeason, type]);
 
   useEffect(() => {
-    const searchTimeout = setTimeout(() => {
-      let animeFilter = animes;
-      if (filterSeason === "all") {
-        animeFilter = animes.filter((anime) => {
-          const animeTitle = anime.title.english || anime.title.romaji;
-          return animeTitle.toLowerCase().includes(searchText);
-        });
-      } else if (filterSeason !== "all" && searchText !== "") {
-        animeFilter = animes.filter((anime) => {
-          const animeTitle = anime.title.english || anime.title.romaji;
-          return (
-            animeTitle.toLowerCase().includes(searchText) &&
-            anime.season.toLowerCase() === filterSeason
-          );
-        });
-      } else {
-        animeFilter = animes.filter((anime) => {
-          return anime.season.toLowerCase() === filterSeason;
-        });
-      }
-      setFilteredAnime(animeFilter);
-    }, 500);
+    const getSearchAnime = setTimeout(() => {
+      history.push(`${location.pathname}?search=${searchText}`);
+    }, 1000);
+
     return () => {
-      clearTimeout(searchTimeout);
+      clearTimeout(getSearchAnime);
     };
-  }, [animes, filterSeason, searchText]);
+  }, [dispatch, history, location.pathname, searchText]);
 
   const changeSearchTextHandler = (e) => {
     setSearchText(e.target.value);
@@ -82,18 +70,19 @@ const Home = ({ type }) => {
           placeholder="Search..."
           className={styles.input}
           onChange={changeSearchTextHandler}
+          value={searchText}
         />
         <select className={styles.select} onChange={changeFilterSeasonHandler}>
           <option value="all">All</option>
           {seasons.map((season) => (
-            <option key={season} value={season.toLowerCase()}>
+            <option key={season} value={season}>
               {season}
             </option>
           ))}
         </select>
       </form>
       <div className={styles.container}>
-        {filteredAnime.map((anime) => {
+        {animes.map((anime) => {
           return (
             <Link
               key={anime.id}
@@ -120,3 +109,31 @@ const Home = ({ type }) => {
 };
 
 export default Home;
+
+// useEffect(() => {
+//   const searchTimeout = setTimeout(() => {
+//     let animeFilter = animes;
+//     if (filterSeason === "all") {
+//       animeFilter = animes.filter((anime) => {
+//         const animeTitle = anime.title.english || anime.title.romaji;
+//         return animeTitle.toLowerCase().includes(searchText);
+//       });
+//     } else if (filterSeason !== "all" && searchText !== "") {
+//       animeFilter = animes.filter((anime) => {
+//         const animeTitle = anime.title.english || anime.title.romaji;
+//         return (
+//           animeTitle.toLowerCase().includes(searchText) &&
+//           anime.season.toLowerCase() === filterSeason
+//         );
+//       });
+//     } else {
+//       animeFilter = animes.filter((anime) => {
+//         return anime.season.toLowerCase() === filterSeason;
+//       });
+//     }
+//     setFilteredAnime(animeFilter);
+//   }, 500);
+//   return () => {
+//     clearTimeout(searchTimeout);
+//   };
+// }, [animes, filterSeason, searchText]);

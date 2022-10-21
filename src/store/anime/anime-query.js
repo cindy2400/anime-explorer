@@ -1,13 +1,13 @@
 import { gql } from "@apollo/client";
 
 export const GET_TRENDING_ANIME = gql`
-  query ($page: Int, $perPage: Int) {
+  query ($page: Int, $perPage: Int, $season: MediaSeason) {
     Page(page: $page, perPage: $perPage) {
       pageInfo {
         total
         perPage
       }
-      media(type: ANIME, sort: TRENDING_DESC) {
+      media(type: ANIME, sort: TRENDING_DESC, season: $season) {
         id
         title {
           romaji
@@ -26,13 +26,13 @@ export const GET_TRENDING_ANIME = gql`
 `;
 
 export const GET_POPULAR_ANIME = gql`
-  query ($page: Int, $perPage: Int) {
+  query ($page: Int, $perPage: Int, $season: MediaSeason) {
     Page(page: $page, perPage: $perPage) {
       pageInfo {
         total
         perPage
       }
-      media(type: ANIME, sort: POPULARITY_DESC) {
+      media(type: ANIME, sort: POPULARITY_DESC, season: $season) {
         id
         title {
           romaji
@@ -51,8 +51,8 @@ export const GET_POPULAR_ANIME = gql`
 `;
 
 export const GET_UPCOMING_ANIME = gql`
-  query ($page: Int, $perPage: Int) {
-    Page(page: $page, perPage: $perPage) {
+  query ($page: Int, $perPage: Int, $season: MediaSeason) {
+    Page(page: $page, perPage: $perPage, season: $season) {
       pageInfo {
         total
         perPage
@@ -97,6 +97,36 @@ export const GET_DETAIL_ANIME = gql`
       status
       genres
       description
+    }
+  }
+`;
+
+export const GET_SEARCH_ANIME = gql`
+  query ($page: Int, $perPage: Int, $search: String, $season: MediaSeason) {
+    Page(page: $page, perPage: $perPage) {
+      pageInfo {
+        total
+        perPage
+      }
+      media(
+        type: ANIME
+        sort: TRENDING_DESC
+        search: $search
+        season: $season
+      ) {
+        id
+        title {
+          romaji
+          english
+          native
+        }
+        season
+        seasonYear
+        coverImage {
+          large
+          color
+        }
+      }
     }
   }
 `;

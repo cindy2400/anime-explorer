@@ -1,5 +1,16 @@
 .link {
   margin-right: 10px;
+  color: brown;
+  font-weight: 600;
+  font-size: large;
+  text-decoration: none;
+}
+
+.nav-link {
+  margin-right: 10px;
+  color: rgb(3, 3, 67);
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 .header-box {
@@ -17,4 +28,8 @@
 
 .title {
   margin: 10px;
+  font-size: larger;
+  color: black;
+  font-weight: 700;
+  text-decoration: none;
 }

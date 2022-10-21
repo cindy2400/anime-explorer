@@ -19,6 +19,9 @@ export const animeSlice = createSlice({
     getUpcomingAnime(state, action) {
       state.animes = action.payload.Page.media;
     },
+    removeAnime(state) {
+      state.animes = [];
+    },
     getDetailAnime(state, action) {
       state.anime = action.payload.Media;
     },

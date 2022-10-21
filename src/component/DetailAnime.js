@@ -31,7 +31,7 @@ const DetailAnime = () => {
   };
 
   if (isEmpty(animeDetail)) {
-    return <p>Loading</p>;
+    return <p>Loading...</p>;
   }
   return (
     <Card>
@@ -64,7 +64,10 @@ const DetailAnime = () => {
         <div className={styles["container-property"]}>
           <Card>
             <h1>{animeDetail.title.english || animeDetail.title.romaji}</h1>
-            <p>{animeDetail.description}</p>
+            <p
+              dangerouslySetInnerHTML={{ __html: animeDetail.description }}
+            ></p>
+            <hr></hr>
             <button
               onClick={() =>
                 isFavoriteAnime
@@ -82,10 +85,14 @@ const DetailAnime = () => {
             <h3>Trailer</h3>
             {animeDetail.trailer !== null && (
               <iframe
-                className={styles["container-iframe"]}
+                width="560"
+                height="315"
                 src={`https://www.youtube.com/embed/${animeDetail.trailer.id}`}
-                title="Anime Trailer"
-              />
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen="1"
+              ></iframe>
             )}
           </Card>
         </div>

@@ -8,6 +8,9 @@ import Card from "./ui/Card";
 const FavoritesAnime = () => {
   const favoriteAnimes = useSelector((state) => state.home.animeFavorites);
 
+  if (favoriteAnimes.length === 0) {
+    return <p>Favorite Animes Empty...</p>;
+  }
   return (
     <div className={styles.container}>
       {favoriteAnimes.map((anime) => {

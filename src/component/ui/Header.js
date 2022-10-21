@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
+import { animeActions } from "../../store/anime/anime-slice";
 import { authActions } from "../../store/auth/auth-slice";
 import styles from "./Header.module.css";
 
@@ -14,42 +15,71 @@ const Header = () => {
     history.push("/login");
   };
 
+  const removeStateHandler = () => {
+    dispatch(animeActions.removeAnime());
+  };
+
   return (
     <div className={styles["header-box"]}>
       <div className={styles["header-alignment"]}>
-        <h2 className={styles.title}>Anime Explorer</h2>
+        <Link to="/home" className={styles.title}>
+          Anime Explorer
+        </Link>
         <div className={styles["header-nav"]}>
           {!token && (
             <>
-              <Link to="/login" className={styles.link}>
+              <NavLink
+                activeClassName={styles["nav-link"]}
+                to="/login"
+                className={styles.link}
+              >
                 Login
-              </Link>
-              <Link to="/register" className={styles.link}>
+              </NavLink>
+              <NavLink
+                activeClassName={styles["nav-link"]}
+                to="/register"
+                className={styles.link}
+              >
                 Register
-              </Link>
+              </NavLink>
             </>
           )}
           {token && (
             <>
-              <Link to="/home" className={styles.link}>
+              <NavLink
+                activeClassName={styles["nav-link"]}
+                to="/home"
+                className={styles.link}
+                onClick={removeStateHandler}
+              >
                 Trending
-              </Link>
-              <Link to="/popular" className={styles.link}>
+              </NavLink>
+              <NavLink
+                activeClassName={styles["nav-link"]}
+                to="/popular"
+                className={styles.link}
+                onClick={removeStateHandler}
+              >
                 Popular
-              </Link>
+              </NavLink>
               {/* <Link to="/upcoming" className={styles.link}>
                 Upcoming
               </Link> */}
-              <Link to="/favorites" className={styles.link}>
+              <NavLink
+                activeClassName={styles["nav-link"]}
+                to="/favorites"
+                className={styles.link}
+              >
                 Favorites
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
+                activeClassName={styles["nav-link"]}
                 to="/logout"
                 onClick={logoutHandler}
                 className={styles.link}
               >
                 Logout
-              </Link>
+              </NavLink>
             </>
           )}
         </div>
