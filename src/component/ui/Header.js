@@ -62,9 +62,6 @@ const Header = () => {
               >
                 Popular
               </NavLink>
-              {/* <Link to="/upcoming" className={styles.link}>
-                Upcoming
-              </Link> */}
               <NavLink
                 activeClassName={styles["nav-link"]}
                 to="/favorites"

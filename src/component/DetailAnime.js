@@ -51,20 +51,23 @@ const DetailAnime = () => {
           />
           <Card className={styles["container-info"]}>
             <h3>Season</h3>
-            <p>{animeDetail.season}</p>
+            <p className={styles.paragraph}>{animeDetail.season}</p>
             <h3>Status</h3>
-            <p>{animeDetail.status}</p>
+            <p className={styles.paragraph}>{animeDetail.status}</p>
             <h3>Genre</h3>
             {animeDetail.genres.map((genre) => (
-              <p key={genre}>{genre}</p>
+              <p className={styles.paragraph} key={genre}>
+                {genre}
+              </p>
             ))}
           </Card>
         </div>
 
         <div className={styles["container-property"]}>
           <Card>
-            <h1>{animeDetail.title.english || animeDetail.title.romaji}</h1>
+            <h2>{animeDetail.title.english || animeDetail.title.romaji}</h2>
             <p
+              className={styles.paragraph}
               dangerouslySetInnerHTML={{ __html: animeDetail.description }}
             ></p>
             <hr></hr>

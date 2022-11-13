@@ -90,10 +90,12 @@ const Home = ({ type }) => {
               onClick={renewDetailHandler}
             >
               <Card className={styles.card}>
-                <p>{anime.title.english || anime.title.romaji}</p>
+                <p className={styles.title}>
+                  {anime.title.english || anime.title.romaji}
+                </p>
                 <Badge>{`${anime.season}, ${anime.seasonYear}`}</Badge>
                 <LazyLoadImage
-                  width={230}
+                  width={180}
                   height="auto"
                   src={anime.coverImage.large}
                   effect="blur"

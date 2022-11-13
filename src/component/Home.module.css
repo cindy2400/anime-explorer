@@ -6,8 +6,8 @@
 }
 
 .card {
-  width: 230px;
-  margin: 20px;
+  width: 180px;
+  margin: 10px;
 }
 
 .link {
@@ -18,7 +18,7 @@
 
 .form {
   margin-top: 40px;
-  margin-left: 100px;
+  margin-left: 60px;
 }
 
 .input {
@@ -28,4 +28,8 @@
 .select {
   height: 30px;
   margin-left: 20px;
+}
+
+.title {
+  font-size: 14px;
 }

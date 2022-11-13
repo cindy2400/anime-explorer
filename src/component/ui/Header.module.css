@@ -1,8 +1,8 @@
 .link {
   margin-right: 10px;
   color: brown;
-  font-weight: 600;
-  font-size: large;
+  font-weight: 500;
+  font-size: 16px;
   text-decoration: none;
 }
 
@@ -23,13 +23,13 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
 }
 
 .title {
   margin: 10px;
-  font-size: larger;
+  font-size: 18px;
   color: black;
-  font-weight: 700;
+  font-weight: 500;
   text-decoration: none;
 }

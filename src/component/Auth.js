@@ -28,9 +28,9 @@ const Auth = ({ type }) => {
     <div className={styles.content}>
       <Card>
         {type === "login" ? (
-          <h1 className={styles.title}>Login</h1>
+          <h2 className={styles.title}>Login</h2>
         ) : (
-          <h1 className={styles.title}>Register</h1>
+          <h2 className={styles.title}>Register</h2>
         )}
         <form onSubmit={authHandler}>
           <ul className={styles.bullets}>
