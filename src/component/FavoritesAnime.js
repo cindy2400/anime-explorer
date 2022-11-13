@@ -19,7 +19,11 @@ const FavoritesAnime = () => {
             <Card className={styles.card}>
               <p>{anime.title.english || anime.title.romaji}</p>
               <Badge>{`${anime.season}, ${anime.seasonYear}`}</Badge>
-              <img src={anime.coverImage.large} alt="cover anime" />
+              <img
+                className={styles.image}
+                src={anime.coverImage.large}
+                alt="cover anime"
+              />
             </Card>
           </Link>
         );
