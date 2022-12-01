@@ -1,0 +1,14 @@
+.card {
+  width: 180px;
+  margin: 10px;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+
+.title {
+  font-size: 14px;
+}

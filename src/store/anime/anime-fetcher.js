@@ -2,14 +2,16 @@ import { client } from "../../util/apollo";
 import { GET_ANIME, GET_DETAIL_ANIME } from "./anime-query";
 import { animeActions } from "./anime-slice";
 
-export const fetchTrendingAnime = (searchQuery, filterSeason) => {
+export const fetchTrendingAnime = (page = 1, searchQuery, filterSeason) => {
+  console.log(searchQuery);
+  console.log(filterSeason);
   return (dispatch) => {
     client
       .query({
         query: GET_ANIME,
         variables: {
-          page: 1,
-          perPage: 20,
+          page: page,
+          perPage: 10,
           search: searchQuery === "" ? undefined : searchQuery,
           season: filterSeason === "all" ? undefined : filterSeason,
           sort: "TRENDING_DESC",
@@ -22,13 +24,13 @@ export const fetchTrendingAnime = (searchQuery, filterSeason) => {
   };
 };
 
-export const fetchPopularAnime = (searchQuery, filterSeason) => {
+export const fetchPopularAnime = (page = 1, searchQuery, filterSeason) => {
   return (dispatch) => {
     client
       .query({
         query: GET_ANIME,
         variables: {
-          page: 1,
+          page: page,
           perPage: 20,
           search: searchQuery === "" ? undefined : searchQuery,
           season: filterSeason === "all" ? undefined : filterSeason,
@@ -40,13 +42,13 @@ export const fetchPopularAnime = (searchQuery, filterSeason) => {
   };
 };
 
-export const fetchUpcomingAnime = (searchQuery, filterSeason) => {
+export const fetchUpcomingAnime = (page = 1, searchQuery, filterSeason) => {
   return (dispatch) => {
     client
       .query({
         query: GET_ANIME,
         variables: {
-          page: 1,
+          page: page,
           perPage: 20,
           search: searchQuery === "" ? undefined : searchQuery,
           season: filterSeason === "all" ? undefined : filterSeason,

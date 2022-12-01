@@ -4,6 +4,7 @@ const initialState = {
   animes: [],
   anime: {},
   animeFavorites: [],
+  pageInfo: {},
 };
 
 export const animeSlice = createSlice({
@@ -11,13 +12,21 @@ export const animeSlice = createSlice({
   initialState: initialState,
   reducers: {
     getTrendingAnime(state, action) {
-      state.animes = action.payload.Page.media;
+      console.log(action.payload);
+      if (action.payload.Page.pageInfo.currentPage === 1) {
+        console.log("if");
+        state.animes = action.payload.Page.media;
+      } else {
+        console.log("else");
+        state.animes = [...state.animes, ...action.payload.Page.media];
+      }
+      state.pageInfo = action.payload.Page.pageInfo;
     },
     getPopularAnime(state, action) {
-      state.animes = action.payload.Page.media;
+      state.animes.push(...action.payload.Page.media);
     },
     getUpcomingAnime(state, action) {
-      state.animes = action.payload.Page.media;
+      state.animes.push(...action.payload.Page.media);
     },
     removeAnime(state) {
       state.animes = [];

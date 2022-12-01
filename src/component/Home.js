@@ -1,46 +1,44 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import {
   fetchPopularAnime,
   fetchTrendingAnime,
   fetchUpcomingAnime,
 } from "../store/anime/anime-fetcher";
-import { animeActions } from "../store/anime/anime-slice";
 import styles from "./Home.module.css";
-import Badge from "./ui/Badge";
-import Card from "./ui/Card";
+import ItemAnime from "./ItemAnime";
 
 const Home = ({ type }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
   const animes = useSelector((state) => state.home.animes);
+  const pageInfo = useSelector((state) => state.home.pageInfo);
   const [filterSeason, setFilterSeason] = useState("all");
 
   const queryParams = new URLSearchParams(location.search);
   const searchQuery = queryParams.get("search");
   const searchTemp = searchQuery === null ? "" : searchQuery;
   const [searchText, setSearchText] = useState(searchTemp);
-
-  let seasons = useMemo(
-    () => [...new Set(animes.map((anime) => anime.season))],
-    [animes]
-  );
+  const seasons = ["WINTER", "SUMMER", "SPRING", "FALL"];
+  const [pageNum, setPageNum] = useState(1);
+  const intObserver = useRef();
 
   useEffect(() => {
     if (type === "trending") {
-      dispatch(fetchTrendingAnime(searchTemp, filterSeason));
+      console.log("trending ");
+      dispatch(fetchTrendingAnime(pageNum, searchTemp, filterSeason));
     } else if (type === "popular") {
-      dispatch(fetchPopularAnime(searchTemp, filterSeason));
+      dispatch(fetchPopularAnime(pageNum, searchTemp, filterSeason));
     } else if (type === "upcoming") {
-      dispatch(fetchUpcomingAnime(searchTemp, filterSeason));
+      dispatch(fetchUpcomingAnime(pageNum, searchTemp, filterSeason));
     }
-  }, [dispatch, searchTemp, filterSeason, type]);
+  }, [dispatch, searchTemp, filterSeason, type, pageNum]);
 
   useEffect(() => {
     const getSearchAnime = setTimeout(() => {
+      setPageNum(1);
       history.push(`${location.pathname}?search=${searchText}`);
     }, 1000);
 
@@ -54,12 +52,32 @@ const Home = ({ type }) => {
   };
 
   const changeFilterSeasonHandler = (e) => {
+    setPageNum(1);
     setFilterSeason(e.target.value);
   };
 
-  const renewDetailHandler = () => {
-    dispatch(animeActions.removeDetailAnime());
-  };
+  const lastPostRef = useCallback(
+    (item) => {
+      if (intObserver.current) intObserver.current.disconnect();
+
+      intObserver.current = new IntersectionObserver((items) => {
+        if (items[0].isIntersecting && pageInfo.hasNextPage) {
+          setPageNum((prev) => prev + 1);
+        }
+      });
+
+      if (item) intObserver.current.observe(item);
+    },
+    [pageInfo]
+  );
+
+  const content = animes.map((anime, i) => {
+    if (animes.length === i + 1) {
+      return <ItemAnime key={anime.id} ref={lastPostRef} anime={anime} />;
+    } else {
+      return <ItemAnime key={anime.id} anime={anime} />;
+    }
+  });
 
   return (
     <div>
@@ -80,31 +98,7 @@ const Home = ({ type }) => {
           ))}
         </select>
       </form>
-      <div className={styles.container}>
-        {animes.map((anime) => {
-          return (
-            <Link
-              key={anime.id}
-              to={`/home/${anime.id}`}
-              className={styles.link}
-              onClick={renewDetailHandler}
-            >
-              <Card className={styles.card}>
-                <p className={styles.title}>
-                  {anime.title.english || anime.title.romaji}
-                </p>
-                <Badge>{`${anime.season}, ${anime.seasonYear}`}</Badge>
-                <LazyLoadImage
-                  width={180}
-                  height="auto"
-                  src={anime.coverImage.large}
-                  effect="blur"
-                />
-              </Card>
-            </Link>
-          );
-        })}
-      </div>
+      <div className={styles.container}>{content}</div>
     </div>
   );
 };

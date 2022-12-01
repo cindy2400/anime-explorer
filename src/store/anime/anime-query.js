@@ -12,6 +12,8 @@ export const GET_ANIME = gql`
       pageInfo {
         total
         perPage
+        currentPage
+        hasNextPage
       }
       media(type: ANIME, sort: $sort, season: $season, search: $search) {
         id
