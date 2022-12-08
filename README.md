@@ -10,6 +10,11 @@
 - [Anilist GraphQL API](https://anilist.gitbook.io/anilist-apiv2-docs/overview/graphql/getting-started) = API for anime data
 - [Create React App](https://github.com/facebook/create-react-app)
 
+### Preview : 
+![login](./public/anime-explorer1.PNG)
+![home](./public/anime-explorer2.PNG)
+![detail](./public/anime-explorer3.PNG)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
