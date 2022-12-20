@@ -12,12 +12,11 @@ export const animeSlice = createSlice({
   initialState: initialState,
   reducers: {
     getTrendingAnime(state, action) {
-      console.log(action.payload);
-      if (action.payload.Page.pageInfo.currentPage === 1) {
-        console.log("if");
+      const page = action.payload.Page.pageInfo.currentPage;
+      if (page === 1) {
+        state.animes = [];
         state.animes = action.payload.Page.media;
       } else {
-        console.log("else");
         state.animes = [...state.animes, ...action.payload.Page.media];
       }
       state.pageInfo = action.payload.Page.pageInfo;

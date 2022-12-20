@@ -3,8 +3,6 @@ import { GET_ANIME, GET_DETAIL_ANIME } from "./anime-query";
 import { animeActions } from "./anime-slice";
 
 export const fetchTrendingAnime = (page = 1, searchQuery, filterSeason) => {
-  console.log(searchQuery);
-  console.log(filterSeason);
   return (dispatch) => {
     client
       .query({

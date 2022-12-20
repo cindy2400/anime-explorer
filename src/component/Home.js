@@ -27,7 +27,6 @@ const Home = ({ type }) => {
 
   useEffect(() => {
     if (type === "trending") {
-      console.log("trending ");
       dispatch(fetchTrendingAnime(pageNum, searchTemp, filterSeason));
     } else if (type === "popular") {
       dispatch(fetchPopularAnime(pageNum, searchTemp, filterSeason));
