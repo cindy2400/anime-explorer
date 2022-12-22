@@ -5,6 +5,7 @@ import {
   fetchPopularAnimePreview,
   fetchTrendingAnimePreview,
 } from "../store/anime/anime-fetcher";
+import { animeActions } from "../store/anime/anime-slice";
 import styles from "./Home.module.css";
 import ItemAnime from "./ItemAnime";
 
@@ -15,6 +16,10 @@ const Home = () => {
   );
   const popularAnime = useSelector((state) => state.anime.animePopularPreview);
 
+  const removeStateHandler = () => {
+    dispatch(animeActions.removeAnime());
+  };
+
   useEffect(() => {
     dispatch(fetchPopularAnimePreview());
     dispatch(fetchTrendingAnimePreview());
@@ -24,7 +29,11 @@ const Home = () => {
     <div>
       <div className={styles["section-one"]}>
         <h3>TRENDING ANIME</h3>
-        <Link to="/trending" className={styles.link}>
+        <Link
+          to="/trending"
+          className={styles.link}
+          onClick={removeStateHandler}
+        >
           View all
         </Link>
       </div>
@@ -35,7 +44,11 @@ const Home = () => {
       </div>
       <div className={styles["section-one"]}>
         <h3>POPULAR ANIME</h3>
-        <Link to="/popular" className={styles.link}>
+        <Link
+          to="/popular"
+          className={styles.link}
+          onClick={removeStateHandler}
+        >
           View all
         </Link>
       </div>

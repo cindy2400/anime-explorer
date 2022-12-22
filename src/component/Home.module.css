@@ -19,5 +19,7 @@ h3 {
 }
 
 .link {
-  margin-top: 12px;
+  margin-top: 17px;
+  color: rgb(95, 102, 103);
+  font-weight: 600;
 }

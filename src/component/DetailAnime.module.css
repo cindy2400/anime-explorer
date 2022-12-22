@@ -14,7 +14,6 @@
 }
 
 .container-banner {
-  margin: 10px;
   width: 100%;
 }
 
@@ -30,6 +29,36 @@
 
 .container-info {
   width: 200px;
+}
+
+.container-characters {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-character-row {
+  display: flex;
+  flex-direction: row;
+  width: 45%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 5px;
+}
+
+.card-character-col {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.character-image {
+  width: 50px;
+  height: fit-content;
+}
+
+.character-p {
+  font-size: 12px;
 }
 
 .button-favorite {

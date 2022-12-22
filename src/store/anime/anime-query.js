@@ -55,6 +55,47 @@ export const GET_DETAIL_ANIME = gql`
       status
       genres
       description
+      episodes
+      format
+      duration
+      averageScore
+      source
+      characters(sort: FAVOURITES_DESC, perPage: 6) {
+        nodes {
+          id
+          name {
+            first
+            middle
+            last
+            full
+            native
+            userPreferred
+          }
+          image {
+            large
+            medium
+          }
+          gender
+        }
+      }
+      staff(sort: FAVOURITES_DESC, perPage: 4) {
+        nodes {
+          id
+          name {
+            first
+            middle
+            last
+            full
+            native
+            userPreferred
+          }
+          image {
+            large
+            medium
+          }
+          primaryOccupations
+        }
+      }
     }
   }
 `;

@@ -54,6 +54,16 @@ const DetailAnime = () => {
             <p className={styles.paragraph}>{animeDetail.season}</p>
             <h3>Status</h3>
             <p className={styles.paragraph}>{animeDetail.status}</p>
+            <h3>Episodes</h3>
+            <p className={styles.paragraph}>{animeDetail.episodes}</p>
+            <h3>Format</h3>
+            <p className={styles.paragraph}>{animeDetail.format}</p>
+            <h3>Duration</h3>
+            <p className={styles.paragraph}>{animeDetail.duration}</p>
+            <h3>Average score</h3>
+            <p className={styles.paragraph}>{animeDetail.averageScore}</p>
+            <h3>Source</h3>
+            <p className={styles.paragraph}>{animeDetail.source}</p>
             <h3>Genre</h3>
             {animeDetail.genres.map((genre) => (
               <p className={styles.paragraph} key={genre}>
@@ -70,7 +80,6 @@ const DetailAnime = () => {
               className={styles.paragraph}
               dangerouslySetInnerHTML={{ __html: animeDetail.description }}
             ></p>
-            <hr></hr>
             <button
               onClick={() =>
                 isFavoriteAnime
@@ -85,6 +94,46 @@ const DetailAnime = () => {
             >
               {isFavoriteAnime ? "Remove" : "Favorite"}
             </button>
+
+            <hr></hr>
+            <h3>Characters</h3>
+            <div className={styles["container-characters"]}>
+              {animeDetail.characters.nodes.map((char) => (
+                <Card key={char.id} className={styles["card-character-row"]}>
+                  <img
+                    src={char.image.medium}
+                    alt="character"
+                    className={styles["character-image"]}
+                  />
+                  <div className={styles["card-character-col"]}>
+                    <p className={styles["character-p"]}>{char.name.full}</p>
+                    <p className={styles["character-p"]}>{char.gender}</p>
+                  </div>
+                </Card>
+              ))}
+            </div>
+
+            <hr></hr>
+            <h3>Staff</h3>
+            <div className={styles["container-characters"]}>
+              {animeDetail.staff.nodes.map((staff) => (
+                <Card className={styles["card-character-row"]}>
+                  <img
+                    src={staff.image.medium}
+                    alt="character"
+                    className={styles["character-image"]}
+                  />
+                  <div className={styles["card-character-col"]}>
+                    <p className={styles["character-p"]}>{staff.name.full}</p>
+                    <p className={styles["character-p"]}>
+                      {staff.primaryOccupations[0]}
+                    </p>
+                  </div>
+                </Card>
+              ))}
+            </div>
+
+            <hr></hr>
             <h3>Trailer</h3>
             {animeDetail.trailer !== null && (
               <iframe
