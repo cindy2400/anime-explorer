@@ -19,7 +19,7 @@ const Header = () => {
         </Link>
         <div className={styles["header-nav"]}>
           <>
-            <NavLink
+            {/* <NavLink
               activeClassName={styles["nav-link"]}
               to="/trending"
               className={styles.link}
@@ -34,7 +34,7 @@ const Header = () => {
               onClick={removeStateHandler}
             >
               Popular
-            </NavLink>
+            </NavLink> */}
             <NavLink
               activeClassName={styles["nav-link"]}
               to="/favorites"
