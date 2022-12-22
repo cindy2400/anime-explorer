@@ -1,0 +1,41 @@
+.container {
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  width: 180px;
+  margin: 10px;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+
+.form {
+  margin-top: 40px;
+  margin-left: 70px;
+}
+
+.input {
+  height: 30px;
+}
+
+.select {
+  height: 30px;
+  margin-left: 20px;
+}
+
+.title {
+  font-size: 14px;
+}
+
+.core-title {
+  font-weight: 500;
+  margin-left: 70px;
+  margin-top: 40px;
+}

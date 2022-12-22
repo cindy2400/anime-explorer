@@ -3,7 +3,7 @@ import { animeSlice } from "./anime/anime-slice";
 
 const store = configureStore({
   reducer: {
-    home: animeSlice.reducer,
+    anime: animeSlice.reducer,
   },
 });
 

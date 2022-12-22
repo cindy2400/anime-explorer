@@ -5,6 +5,8 @@ const initialState = {
   anime: {},
   animeFavorites: [],
   pageInfo: {},
+  animeTrendingPreview: [],
+  animePopularPreview: [],
 };
 
 export const animeSlice = createSlice({
@@ -43,6 +45,12 @@ export const animeSlice = createSlice({
       state.animeFavorites = state.animeFavorites.filter(
         (anime) => anime.id !== action.payload
       );
+    },
+    setAnimeTrendingPreview(state, action) {
+      state.animeTrendingPreview = action.payload.Page.media;
+    },
+    setAnimePopularPreview(state, action) {
+      state.animePopularPreview = action.payload.Page.media;
     },
   },
 });

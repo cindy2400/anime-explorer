@@ -1,5 +1,6 @@
-import { Redirect, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import "./App.css";
+import Anime from "./component/Anime";
 import DetailAnime from "./component/DetailAnime";
 import FavoritesAnime from "./component/FavoritesAnime";
 import Home from "./component/Home";
@@ -10,20 +11,20 @@ function App() {
     <div>
       <Header />
       <>
-        <Route path="/">
-          <Redirect to="/home" />
+        <Route path="/" exact>
+          <Home />
         </Route>
-        <Route path="/home" exact>
-          <Home type="trending" />
+        <Route path="/trending" exact>
+          <Anime type="trending" />
         </Route>
         <Route path="/home/:animeId">
           <DetailAnime />
         </Route>
         <Route path="/popular">
-          <Home type="popular" />
+          <Anime type="popular" />
         </Route>
         <Route path="/upcoming">
-          <Home type="upcoming" />
+          <Anime type="upcoming" />
         </Route>
         <Route path="/favorites">
           <FavoritesAnime />

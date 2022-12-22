@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { animeActions } from "../store/anime/anime-slice";
 import styles from "./ItemAnime.module.css";
-import Badge from "./ui/Badge";
 import Card from "./ui/Card";
 
 const ItemAnime = React.forwardRef(({ anime }, ref) => {
@@ -22,16 +21,16 @@ const ItemAnime = React.forwardRef(({ anime }, ref) => {
       onClick={renewDetailHandler}
     >
       <Card className={styles.card}>
-        <p className={styles.title}>
-          {anime.title.english || anime.title.romaji}
-        </p>
-        <Badge>{`${anime.season}, ${anime.seasonYear}`}</Badge>
+        {/* <Badge>{`${anime.season}, ${anime.seasonYear}`}</Badge> */}
         <LazyLoadImage
           width={180}
           height="auto"
           src={anime.coverImage.large}
           effect="blur"
         />
+        <p className={styles.title}>
+          {anime.title.english || anime.title.romaji}
+        </p>
       </Card>
     </Link>
   );

@@ -6,7 +6,7 @@ import Badge from "./ui/Badge";
 import Card from "./ui/Card";
 
 const FavoritesAnime = () => {
-  const favoriteAnimes = useSelector((state) => state.home.animeFavorites);
+  const favoriteAnimes = useSelector((state) => state.anime.animeFavorites);
 
   if (favoriteAnimes.length === 0) {
     return <p>Favorite Animes Empty...</p>;

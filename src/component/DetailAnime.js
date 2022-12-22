@@ -10,8 +10,8 @@ import Card from "./ui/Card";
 const DetailAnime = () => {
   const param = useParams();
   const dispatch = useDispatch();
-  const animeDetail = useSelector((state) => state.home.anime);
-  const favAnime = useSelector((state) => state.home.animeFavorites);
+  const animeDetail = useSelector((state) => state.anime.anime);
+  const favAnime = useSelector((state) => state.anime.animeFavorites);
   const animeId = param.animeId;
   const isFavoriteAnime = useMemo(
     () => favAnime.some((fav) => +fav.id === +animeId),

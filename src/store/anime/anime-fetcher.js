@@ -73,3 +73,39 @@ export const fetchDetailAnime = (id) => {
       .catch((err) => console.log(err));
   };
 };
+
+export const fetchTrendingAnimePreview = () => {
+  return (dispatch) => {
+    client
+      .query({
+        query: GET_ANIME,
+        variables: {
+          page: 1,
+          perPage: 5,
+          sort: "TRENDING_DESC",
+        },
+      })
+      .then((response) =>
+        dispatch(animeActions.setAnimeTrendingPreview(response.data))
+      )
+      .catch((err) => console.error(err));
+  };
+};
+
+export const fetchPopularAnimePreview = () => {
+  return (dispatch) => {
+    client
+      .query({
+        query: GET_ANIME,
+        variables: {
+          page: 1,
+          perPage: 5,
+          sort: "POPULARITY_DESC",
+        },
+      })
+      .then((response) =>
+        dispatch(animeActions.setAnimePopularPreview(response.data))
+      )
+      .catch((err) => console.error(err));
+  };
+};

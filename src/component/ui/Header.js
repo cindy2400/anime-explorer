@@ -21,7 +21,7 @@ const Header = () => {
           <>
             <NavLink
               activeClassName={styles["nav-link"]}
-              to="/home"
+              to="/trending"
               className={styles.link}
               onClick={removeStateHandler}
             >
