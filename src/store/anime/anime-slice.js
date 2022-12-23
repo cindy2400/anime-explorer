@@ -16,7 +16,6 @@ export const animeSlice = createSlice({
     getTrendingAnime(state, action) {
       const page = action.payload.Page.pageInfo.currentPage;
       if (page === 1) {
-        state.animes = [];
         state.animes = action.payload.Page.media;
       } else {
         state.animes = [...state.animes, ...action.payload.Page.media];

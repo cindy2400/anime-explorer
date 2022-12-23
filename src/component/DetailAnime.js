@@ -44,12 +44,12 @@ const DetailAnime = () => {
       )}
       <div className={styles.container}>
         <div className={styles["container-column"]}>
-          <img
-            className={styles["container-image"]}
-            src={animeDetail.coverImage.large}
-            alt="anime cover"
-          />
           <Card className={styles["container-info"]}>
+            <img
+              className={styles["container-image"]}
+              src={animeDetail.coverImage.large}
+              alt="anime cover"
+            />
             <h3>Season</h3>
             <p className={styles.paragraph}>{animeDetail.season}</p>
             <h3>Status</h3>

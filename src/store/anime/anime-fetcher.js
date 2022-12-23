@@ -9,7 +9,7 @@ export const fetchTrendingAnime = (page = 1, searchQuery, filterSeason) => {
         query: GET_ANIME,
         variables: {
           page: page,
-          perPage: 10,
+          perPage: 20,
           search: searchQuery === "" ? undefined : searchQuery,
           season: filterSeason === "all" ? undefined : filterSeason,
           sort: "TRENDING_DESC",

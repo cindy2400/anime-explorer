@@ -4,8 +4,8 @@ import { useHistory, useLocation } from "react-router-dom";
 import {
   fetchPopularAnime,
   fetchTrendingAnime,
-  fetchUpcomingAnime,
 } from "../store/anime/anime-fetcher";
+import { animeActions } from "../store/anime/anime-slice";
 import styles from "./Anime.module.css";
 import ItemAnime from "./ItemAnime";
 
@@ -26,19 +26,20 @@ const Anime = ({ type }) => {
   const intObserver = useRef();
 
   useEffect(() => {
-    if (type === "trending") {
-      dispatch(fetchTrendingAnime(pageNum, searchTemp, filterSeason));
-    } else if (type === "popular") {
-      dispatch(fetchPopularAnime(pageNum, searchTemp, filterSeason));
-    } else if (type === "upcoming") {
-      dispatch(fetchUpcomingAnime(pageNum, searchTemp, filterSeason));
-    }
+    type === "trending"
+      ? dispatch(fetchTrendingAnime(pageNum, searchTemp, filterSeason))
+      : dispatch(fetchPopularAnime(pageNum, searchTemp, filterSeason));
   }, [dispatch, searchTemp, filterSeason, type, pageNum]);
 
   useEffect(() => {
+    dispatch(animeActions.removeAnime());
     const getSearchAnime = setTimeout(() => {
       setPageNum(1);
-      history.push(`${location.pathname}?search=${searchText}`);
+      if (searchText === "") {
+        history.push(`${location.pathname}`);
+      } else {
+        history.push(`${location.pathname}?search=${searchText}`);
+      }
     }, 1000);
 
     return () => {
@@ -51,6 +52,7 @@ const Anime = ({ type }) => {
   };
 
   const changeFilterSeasonHandler = (e) => {
+    dispatch(animeActions.removeAnime());
     setPageNum(1);
     setFilterSeason(e.target.value);
   };
