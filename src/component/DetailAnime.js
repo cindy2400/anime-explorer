@@ -52,6 +52,12 @@ const DetailAnime = () => {
             />
             <h3>Season</h3>
             <p className={styles.paragraph}>{animeDetail.season}</p>
+            <h3>Genre</h3>
+            {animeDetail.genres.map((genre) => (
+              <p className={styles.paragraph} key={genre}>
+                {genre}
+              </p>
+            ))}
             <h3>Status</h3>
             <p className={styles.paragraph}>{animeDetail.status}</p>
             <h3>Episodes</h3>
@@ -64,12 +70,6 @@ const DetailAnime = () => {
             <p className={styles.paragraph}>{animeDetail.averageScore}</p>
             <h3>Source</h3>
             <p className={styles.paragraph}>{animeDetail.source}</p>
-            <h3>Genre</h3>
-            {animeDetail.genres.map((genre) => (
-              <p className={styles.paragraph} key={genre}>
-                {genre}
-              </p>
-            ))}
           </Card>
         </div>
 

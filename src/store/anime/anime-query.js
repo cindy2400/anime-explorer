@@ -6,6 +6,7 @@ export const GET_ANIME = gql`
     $perPage: Int
     $season: MediaSeason
     $search: String
+    $genre: String
     $sort: [MediaSort]
   ) {
     Page(page: $page, perPage: $perPage) {
@@ -15,7 +16,13 @@ export const GET_ANIME = gql`
         currentPage
         hasNextPage
       }
-      media(type: ANIME, sort: $sort, season: $season, search: $search) {
+      media(
+        type: ANIME
+        sort: $sort
+        season: $season
+        search: $search
+        genre: $genre
+      ) {
         id
         title {
           romaji

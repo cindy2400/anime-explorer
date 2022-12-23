@@ -2,7 +2,12 @@ import { client } from "../../util/apollo";
 import { GET_ANIME, GET_DETAIL_ANIME } from "./anime-query";
 import { animeActions } from "./anime-slice";
 
-export const fetchTrendingAnime = (page = 1, searchQuery, filterSeason) => {
+export const fetchTrendingAnime = (
+  page = 1,
+  searchQuery,
+  filterSeason,
+  genreSelected
+) => {
   return (dispatch) => {
     client
       .query({
@@ -12,6 +17,7 @@ export const fetchTrendingAnime = (page = 1, searchQuery, filterSeason) => {
           perPage: 20,
           search: searchQuery === "" ? undefined : searchQuery,
           season: filterSeason === "all" ? undefined : filterSeason,
+          genre: genreSelected === "all" ? undefined : genreSelected,
           sort: "TRENDING_DESC",
         },
       })
@@ -22,7 +28,12 @@ export const fetchTrendingAnime = (page = 1, searchQuery, filterSeason) => {
   };
 };
 
-export const fetchPopularAnime = (page = 1, searchQuery, filterSeason) => {
+export const fetchPopularAnime = (
+  page = 1,
+  searchQuery,
+  filterSeason,
+  genreSelected
+) => {
   return (dispatch) => {
     client
       .query({
@@ -32,6 +43,7 @@ export const fetchPopularAnime = (page = 1, searchQuery, filterSeason) => {
           perPage: 20,
           search: searchQuery === "" ? undefined : searchQuery,
           season: filterSeason === "all" ? undefined : filterSeason,
+          genre: genreSelected === "all" ? undefined : genreSelected,
           sort: "POPULARITY_DESC",
         },
       })

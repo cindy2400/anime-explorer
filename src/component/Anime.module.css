@@ -17,17 +17,20 @@
 }
 
 .form {
-  margin-top: 40px;
+  margin-top: 20px;
   margin-left: 70px;
+  display: flex;
+  flex-direction: row;
 }
 
 .input {
   height: 30px;
+  width: 180px;
 }
 
 .select {
-  height: 30px;
-  margin-left: 20px;
+  height: 35px;
+  width: 180px;
 }
 
 .title {
@@ -38,4 +41,18 @@
   font-weight: 500;
   margin-left: 70px;
   margin-top: 40px;
+}
+
+.search-filter-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter {
+  margin-left: 50px;
+}
+
+.search-filter-title {
+  font-size: 14px;
+  font-weight: 600;
 }

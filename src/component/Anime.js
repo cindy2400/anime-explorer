@@ -15,46 +15,87 @@ const Anime = ({ type }) => {
   const location = useLocation();
   const animes = useSelector((state) => state.anime.animes);
   const pageInfo = useSelector((state) => state.anime.pageInfo);
-  const [filterSeason, setFilterSeason] = useState("all");
 
   const queryParams = new URLSearchParams(location.search);
+
+  const seasonQuery = queryParams.get("season");
+  const seasonTemp = seasonQuery === null ? "all" : seasonQuery;
+  const [filterSeason, setFilterSeason] = useState(seasonTemp);
+
   const searchQuery = queryParams.get("search");
   const searchTemp = searchQuery === null ? "" : searchQuery;
   const [searchText, setSearchText] = useState(searchTemp);
+
   const seasons = ["WINTER", "SUMMER", "SPRING", "FALL"];
+  const genres = [
+    "Action",
+    "Adventure",
+    "Comedy",
+    "Drama",
+    "Ecchi",
+    "Fantasy",
+    "Horror",
+    "Mahou Shoujo",
+    "Mecha",
+    "Music",
+    "Mystery",
+    "Phychological",
+    "Romance",
+    "Sci-Fi",
+    "Slice of Life",
+    "Sport",
+    "Supernatural",
+    "Thriller",
+  ];
+
+  const genreQuery = queryParams.get("genre");
+  const genreTemp = genreQuery === null ? "all" : genreQuery;
+  const [genreSelected, setGenreSelected] = useState(genreTemp);
+
   const [pageNum, setPageNum] = useState(1);
   const intObserver = useRef();
 
   useEffect(() => {
     type === "trending"
-      ? dispatch(fetchTrendingAnime(pageNum, searchTemp, filterSeason))
-      : dispatch(fetchPopularAnime(pageNum, searchTemp, filterSeason));
-  }, [dispatch, searchTemp, filterSeason, type, pageNum]);
+      ? dispatch(
+          fetchTrendingAnime(pageNum, searchTemp, filterSeason, genreSelected)
+        )
+      : dispatch(
+          fetchPopularAnime(pageNum, searchTemp, filterSeason, genreSelected)
+        );
+  }, [dispatch, searchTemp, filterSeason, type, pageNum, genreSelected]);
 
   useEffect(() => {
     dispatch(animeActions.removeAnime());
     const getSearchAnime = setTimeout(() => {
       setPageNum(1);
-      if (searchText === "") {
-        history.push(`${location.pathname}`);
-      } else {
-        history.push(`${location.pathname}?search=${searchText}`);
-      }
+      history.push(
+        `${location.pathname}?search=${searchText}&season=${filterSeason}&genre=${genreSelected}`
+      );
     }, 1000);
 
     return () => {
       clearTimeout(getSearchAnime);
     };
-  }, [dispatch, history, location.pathname, searchText]);
+  }, [
+    dispatch,
+    filterSeason,
+    genreSelected,
+    history,
+    location.pathname,
+    searchText,
+  ]);
 
   const changeSearchTextHandler = (e) => {
     setSearchText(e.target.value);
   };
 
   const changeFilterSeasonHandler = (e) => {
-    dispatch(animeActions.removeAnime());
-    setPageNum(1);
     setFilterSeason(e.target.value);
+  };
+
+  const changeFilterGenreHandler = (e) => {
+    setGenreSelected(e.target.value);
   };
 
   const lastPostRef = useCallback(
@@ -85,23 +126,52 @@ const Anime = ({ type }) => {
       <h3 className={styles["core-title"]}>
         {type === "trending" ? "TRENDING ANIME" : "POPULAR ANIME"}
       </h3>
+
       <form className={styles.form}>
-        <input
-          type="text"
-          placeholder="Search..."
-          className={styles.input}
-          onChange={changeSearchTextHandler}
-          value={searchText}
-        />
-        <select className={styles.select} onChange={changeFilterSeasonHandler}>
-          <option value="all">All</option>
-          {seasons.map((season) => (
-            <option key={season} value={season}>
-              {season}
-            </option>
-          ))}
-        </select>
+        <div className={styles["search-filter-col"]}>
+          <p className={styles["search-filter-title"]}>Search</p>
+          <input
+            type="text"
+            placeholder="Search..."
+            className={styles.input}
+            onChange={changeSearchTextHandler}
+            value={searchText}
+          />
+        </div>
+
+        <div className={`${styles["search-filter-col"]} ${styles.filter}`}>
+          <p className={styles["search-filter-title"]}>Season</p>
+          <select
+            className={styles.select}
+            value={filterSeason}
+            onChange={changeFilterSeasonHandler}
+          >
+            <option value="all">All</option>
+            {seasons.map((season) => (
+              <option key={season} value={season}>
+                {season}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className={`${styles["search-filter-col"]} ${styles.filter}`}>
+          <p className={styles["search-filter-title"]}>Genre</p>
+          <select
+            className={styles.select}
+            value={genreSelected}
+            onChange={changeFilterGenreHandler}
+          >
+            <option value="all">All</option>
+            {genres.map((genre) => (
+              <option key={genre} value={genre}>
+                {genre}
+              </option>
+            ))}
+          </select>
+        </div>
       </form>
+
       <div className={styles.container}>{content}</div>
     </div>
   );
