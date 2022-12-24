@@ -17,7 +17,7 @@ function App() {
         <Route path="/trending" exact>
           <Anime type="trending" />
         </Route>
-        <Route path="/home/:animeId">
+        <Route path="/anime/:animeId">
           <DetailAnime />
         </Route>
         <Route path="/popular">

@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { fetchDetailAnime } from "../store/anime/anime-fetcher";
 import { animeActions } from "../store/anime/anime-slice";
 import { isEmpty } from "../util/helper";
 import styles from "./DetailAnime.module.css";
 import Card from "./ui/Card";
+import Loading from "./ui/Loading";
 
 const DetailAnime = () => {
   const param = useParams();
@@ -31,7 +32,7 @@ const DetailAnime = () => {
   };
 
   if (isEmpty(animeDetail)) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
   return (
     <Card>
@@ -51,12 +52,21 @@ const DetailAnime = () => {
               alt="anime cover"
             />
             <h3>Season</h3>
-            <p className={styles.paragraph}>{animeDetail.season}</p>
+            <Link
+              to={`/trending?search=&season=${animeDetail.season}&genre=all`}
+              className={styles.link}
+            >
+              {animeDetail.season}
+            </Link>
             <h3>Genre</h3>
             {animeDetail.genres.map((genre) => (
-              <p className={styles.paragraph} key={genre}>
+              <Link
+                to={`/trending?search=&season=all&genre=${genre}`}
+                className={styles.link}
+                key={genre}
+              >
                 {genre}
-              </p>
+              </Link>
             ))}
             <h3>Status</h3>
             <p className={styles.paragraph}>{animeDetail.status}</p>

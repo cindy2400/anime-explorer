@@ -16,12 +16,11 @@ const ItemAnime = React.forwardRef(({ anime }, ref) => {
   const animeItem = (
     <Link
       key={anime.id}
-      to={`/home/${anime.id}`}
+      to={`/anime/${anime.id}`}
       className={styles.link}
       onClick={renewDetailHandler}
     >
       <Card className={styles.card}>
-        {/* <Badge>{`${anime.season}, ${anime.seasonYear}`}</Badge> */}
         <LazyLoadImage
           width={180}
           height="auto"

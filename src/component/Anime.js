@@ -8,6 +8,7 @@ import {
 import { animeActions } from "../store/anime/anime-slice";
 import styles from "./Anime.module.css";
 import ItemAnime from "./ItemAnime";
+import Loading from "./ui/Loading";
 
 const Anime = ({ type }) => {
   const dispatch = useDispatch();
@@ -172,7 +173,11 @@ const Anime = ({ type }) => {
         </div>
       </form>
 
-      <div className={styles.container}>{content}</div>
+      {animes.length === 0 ? (
+        <Loading />
+      ) : (
+        <div className={styles.container}>{content}</div>
+      )}
     </div>
   );
 };

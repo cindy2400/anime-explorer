@@ -26,10 +26,6 @@
   height: 350px;
 }
 
-/* .container-info {
-  width: 200px;
-} */
-
 .container-characters {
   display: flex;
   flex-wrap: wrap;
@@ -80,4 +76,11 @@
 
 .paragraph {
   font-size: 14px;
+}
+
+.link {
+  color: rgb(84, 90, 91);
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
 }
