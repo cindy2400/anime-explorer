@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   animes: [],
   anime: {},
+  animeCharacter: {},
   animeFavorites: [],
   pageInfo: {},
   animeTrendingPreview: [],
@@ -50,6 +51,9 @@ export const animeSlice = createSlice({
     },
     setAnimePopularPreview(state, action) {
       state.animePopularPreview = action.payload.Page.media;
+    },
+    setDetailCharacter(state, action) {
+      state.animeCharacter = action.payload.Character;
     },
   },
 });

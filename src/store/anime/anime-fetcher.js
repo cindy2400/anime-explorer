@@ -1,5 +1,9 @@
 import { client } from "../../util/apollo";
-import { GET_ANIME, GET_DETAIL_ANIME } from "./anime-query";
+import {
+  GET_ANIME,
+  GET_DETAIL_ANIME,
+  GET_DETAIL_CHARACTER,
+} from "./anime-query";
 import { animeActions } from "./anime-slice";
 
 export const fetchTrendingAnime = (
@@ -82,6 +86,22 @@ export const fetchDetailAnime = (id) => {
         },
       })
       .then((response) => dispatch(animeActions.getDetailAnime(response.data)))
+      .catch((err) => console.log(err));
+  };
+};
+
+export const fetchDetailCharacter = (id) => {
+  return (dispatch) => {
+    client
+      .query({
+        query: GET_DETAIL_CHARACTER,
+        variables: {
+          id: id,
+        },
+      })
+      .then((response) =>
+        dispatch(animeActions.setDetailCharacter(response.data))
+      )
       .catch((err) => console.log(err));
   };
 };

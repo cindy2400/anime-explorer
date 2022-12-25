@@ -116,7 +116,12 @@ const DetailAnime = () => {
                     className={styles["character-image"]}
                   />
                   <div className={styles["card-character-col"]}>
-                    <p className={styles["character-p"]}>{char.name.full}</p>
+                    <Link
+                      to={`/animeCharacter/${char.id}`}
+                      className={styles["character-link"]}
+                    >
+                      {char.name.full}
+                    </Link>
                     <p className={styles["character-p"]}>{char.gender}</p>
                   </div>
                 </Card>

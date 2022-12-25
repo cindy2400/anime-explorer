@@ -106,3 +106,31 @@ export const GET_DETAIL_ANIME = gql`
     }
   }
 `;
+
+export const GET_DETAIL_CHARACTER = gql`
+  query ($id: Int) {
+    Character(id: $id) {
+      name {
+        first
+        middle
+        last
+        full
+        native
+        userPreferred
+      }
+      image {
+        large
+        medium
+      }
+      dateOfBirth {
+        year
+        month
+        day
+      }
+      bloodType
+      gender
+      description(asHtml: true)
+      age
+    }
+  }
+`;

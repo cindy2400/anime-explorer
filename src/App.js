@@ -2,6 +2,7 @@ import { Route } from "react-router-dom";
 import "./App.css";
 import Anime from "./component/Anime";
 import DetailAnime from "./component/DetailAnime";
+import DetailCharacter from "./component/DetailCharacter";
 import FavoritesAnime from "./component/FavoritesAnime";
 import Home from "./component/Home";
 import Header from "./component/ui/Header";
@@ -19,6 +20,9 @@ function App() {
         </Route>
         <Route path="/anime/:animeId">
           <DetailAnime />
+        </Route>
+        <Route path="/animeCharacter/:animeCharacterId">
+          <DetailCharacter />
         </Route>
         <Route path="/popular">
           <Anime type="popular" />
