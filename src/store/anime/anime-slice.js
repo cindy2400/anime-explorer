@@ -55,6 +55,9 @@ export const animeSlice = createSlice({
     setDetailCharacter(state, action) {
       state.animeCharacter = action.payload.Character;
     },
+    removeDetailCharacter(state) {
+      state.animeCharacter = {};
+    },
   },
 });
 

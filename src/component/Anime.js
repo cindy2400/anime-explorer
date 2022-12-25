@@ -20,8 +20,8 @@ const Anime = ({ type }) => {
   const queryParams = new URLSearchParams(location.search);
 
   const seasonQuery = queryParams.get("season");
-  const seasonTemp = seasonQuery === null ? "all" : seasonQuery;
-  const [filterSeason, setFilterSeason] = useState(seasonTemp);
+  const seasonTemp = seasonQuery === null ? "ALL" : seasonQuery;
+  const [filterSeason, setFilterSeason] = useState(seasonTemp.toUpperCase());
 
   const searchQuery = queryParams.get("search");
   const searchTemp = searchQuery === null ? "" : searchQuery;
@@ -147,7 +147,7 @@ const Anime = ({ type }) => {
             value={filterSeason}
             onChange={changeFilterSeasonHandler}
           >
-            <option value="all">All</option>
+            <option value="ALL">All</option>
             {seasons.map((season) => (
               <option key={season} value={season}>
                 {season}

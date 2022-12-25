@@ -31,6 +31,10 @@ const DetailAnime = () => {
     dispatch(animeActions.removeFavoriteAnime(id));
   };
 
+  const removeDetailCharacterHandler = () => {
+    dispatch(animeActions.removeDetailCharacter());
+  };
+
   if (isEmpty(animeDetail)) {
     return <Loading />;
   }
@@ -119,6 +123,7 @@ const DetailAnime = () => {
                     <Link
                       to={`/animeCharacter/${char.id}`}
                       className={styles["character-link"]}
+                      onClick={removeDetailCharacterHandler}
                     >
                       {char.name.full}
                     </Link>

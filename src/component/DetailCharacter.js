@@ -2,7 +2,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchDetailCharacter } from "../store/anime/anime-fetcher";
+import { isEmpty } from "../util/helper";
 import styles from "./DetailCharacter.module.css";
+import Loading from "./ui/Loading";
 
 const DetailCharacter = () => {
   const dispatch = useDispatch();
@@ -14,8 +16,9 @@ const DetailCharacter = () => {
     dispatch(fetchDetailCharacter(charId));
   }, [dispatch, charId]);
 
-  console.log(detailCharacter);
-
+  if (isEmpty(detailCharacter)) {
+    return <Loading />;
+  }
   return (
     <div className={styles["character-container"]}>
       <img
