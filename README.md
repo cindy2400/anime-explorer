@@ -1,19 +1,14 @@
 # Anime Explorer
 
-### This website was built using :  
+### This website was built using :
+
 - [React JS](https://reactjs.org/)
 - [React Router](https://reactrouter.com/en/main)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - CSS Modules
 - [Apollo GraphQl](https://www.apollographql.com/docs/react/get-started/)
-- [Reqres](https://reqres.in/) = API for authentication
-- [Anilist GraphQL API](https://anilist.gitbook.io/anilist-apiv2-docs/overview/graphql/getting-started) = API for anime data
+- [Anilist GraphQL API](https://anilist.gitbook.io/anilist-apiv2-docs/overview/graphql/getting-started)
 - [Create React App](https://github.com/facebook/create-react-app)
-
-### Preview : 
-![login](./public/anime-explorer1.PNG)
-![home](./public/anime-explorer2.PNG)
-![detail](./public/anime-explorer3.PNG)
 
 # Getting Started with Create React App
 
