@@ -14,7 +14,7 @@ const FavoritesAnime = () => {
     <div className={styles.container}>
       {favoriteAnimes.map((anime) => {
         return (
-          <Link key={anime.id} to={`/home/${anime.id}`} className={styles.link}>
+          <Link key={anime.id} to={`/anime/${anime.id}`} className={styles.link}>
             <Card className={styles.card}>
               <img
                 className={styles.image}
