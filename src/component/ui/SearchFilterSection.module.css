@@ -1,0 +1,30 @@
+.search-filter-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter {
+  margin-left: 50px;
+}
+
+.search-filter-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form {
+  margin-top: 20px;
+  margin-left: 70px;
+  display: flex;
+  flex-direction: row;
+}
+
+.input {
+  height: 30px;
+  width: 180px;
+}
+
+.select {
+  height: 35px;
+  width: 180px;
+}

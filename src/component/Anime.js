@@ -9,6 +9,7 @@ import { animeActions } from "../store/anime/anime-slice";
 import styles from "./Anime.module.css";
 import ItemAnime from "./ItemAnime";
 import Loading from "./ui/Loading";
+import SearchFilterSection from "./ui/SearchFilterSection";
 
 const Anime = ({ type }) => {
   const dispatch = useDispatch();
@@ -26,28 +27,6 @@ const Anime = ({ type }) => {
   const searchQuery = queryParams.get("search");
   const searchTemp = searchQuery === null ? "" : searchQuery;
   const [searchText, setSearchText] = useState(searchTemp);
-
-  const seasons = ["WINTER", "SUMMER", "SPRING", "FALL"];
-  const genres = [
-    "Action",
-    "Adventure",
-    "Comedy",
-    "Drama",
-    "Ecchi",
-    "Fantasy",
-    "Horror",
-    "Mahou Shoujo",
-    "Mecha",
-    "Music",
-    "Mystery",
-    "Phychological",
-    "Romance",
-    "Sci-Fi",
-    "Slice of Life",
-    "Sport",
-    "Supernatural",
-    "Thriller",
-  ];
 
   const genreQuery = queryParams.get("genre");
   const genreTemp = genreQuery === null ? "all" : genreQuery;
@@ -128,50 +107,14 @@ const Anime = ({ type }) => {
         {type === "trending" ? "TRENDING ANIME" : "POPULAR ANIME"}
       </h3>
 
-      <form className={styles.form}>
-        <div className={styles["search-filter-col"]}>
-          <p className={styles["search-filter-title"]}>Search</p>
-          <input
-            type="text"
-            placeholder="Search..."
-            className={styles.input}
-            onChange={changeSearchTextHandler}
-            value={searchText}
-          />
-        </div>
-
-        <div className={`${styles["search-filter-col"]} ${styles.filter}`}>
-          <p className={styles["search-filter-title"]}>Season</p>
-          <select
-            className={styles.select}
-            value={filterSeason}
-            onChange={changeFilterSeasonHandler}
-          >
-            <option value="ALL">All</option>
-            {seasons.map((season) => (
-              <option key={season} value={season}>
-                {season}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className={`${styles["search-filter-col"]} ${styles.filter}`}>
-          <p className={styles["search-filter-title"]}>Genre</p>
-          <select
-            className={styles.select}
-            value={genreSelected}
-            onChange={changeFilterGenreHandler}
-          >
-            <option value="all">All</option>
-            {genres.map((genre) => (
-              <option key={genre} value={genre}>
-                {genre}
-              </option>
-            ))}
-          </select>
-        </div>
-      </form>
+      <SearchFilterSection
+        changeSearchTextHandler={changeSearchTextHandler}
+        searchText={searchText}
+        filterSeason={filterSeason}
+        changeFilterSeasonHandler={changeFilterSeasonHandler}
+        genreSelected={genreSelected}
+        changeFilterGenreHandler={changeFilterGenreHandler}
+      />
 
       {animes.length === 0 ? (
         <Loading />
