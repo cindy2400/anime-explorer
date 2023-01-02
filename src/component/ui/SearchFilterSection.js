@@ -1,8 +1,8 @@
 import styles from "./SearchFilterSection.module.css";
 
 const SearchFilterSection = ({
-  changeSearchTextHandler,
   searchText,
+  changeSearchTextHandler,
   filterSeason,
   changeFilterSeasonHandler,
   genreSelected,

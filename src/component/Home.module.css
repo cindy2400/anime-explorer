@@ -23,3 +23,28 @@ h3 {
   color: rgb(95, 102, 103);
   font-weight: 600;
 }
+
+.search-filter-col {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.filter {
+  margin-left: 50px;
+}
+
+.search-filter-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.search-filter-section {
+  display: flex;
+  flex-direction: row;
+}
+
+.select {
+  height: 35px;
+  width: 180px;
+}
