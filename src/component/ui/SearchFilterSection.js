@@ -21,7 +21,7 @@ const SearchFilterSection = ({
     "Mecha",
     "Music",
     "Mystery",
-    "Phychological",
+    "Psychological",
     "Romance",
     "Sci-Fi",
     "Slice of Life",
