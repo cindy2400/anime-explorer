@@ -87,8 +87,8 @@ const DetailAnime = () => {
           </Card>
         </div>
 
-        <div className={styles["container-property"]}>
-          <Card>
+        <div>
+          <Card className={styles["container-property"]}>
             <h2>{animeDetail.title.english || animeDetail.title.romaji}</h2>
             <p
               className={styles.paragraph}
@@ -137,7 +137,7 @@ const DetailAnime = () => {
             <h3>Staff</h3>
             <div className={styles["container-characters"]}>
               {animeDetail.staff.nodes.map((staff) => (
-                <Card className={styles["card-character-row"]}>
+                <Card key={staff.id} className={styles["card-character-row"]}>
                   <img
                     src={staff.image.medium}
                     alt="character"

@@ -14,8 +14,9 @@ h3 {
 .section-two {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  overflow-x: scroll;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 .link {

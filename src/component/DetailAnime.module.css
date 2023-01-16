@@ -4,6 +4,7 @@
 
 .container-column {
   flex-direction: column;
+  margin-top: 10px;
 }
 
 .container-image {
@@ -19,6 +20,7 @@
 .container-property {
   flex-grow: 8;
   margin: 10px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .container-iframe {
@@ -31,6 +33,10 @@
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.container-info {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .card-character-row {

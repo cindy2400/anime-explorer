@@ -1,7 +1,7 @@
 .card {
   height: fit-content;
   padding: 16px;
-  border-radius: 5px;
+  border-radius: 12px;
 }
 
 .card:hover {

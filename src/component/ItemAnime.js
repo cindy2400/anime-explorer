@@ -27,6 +27,7 @@ const ItemAnime = React.forwardRef(({ anime }, ref) => {
           height={250}
           src={anime.coverImage.large}
           effect="blur"
+          style={{ borderRadius: 12 }}
         />
         <p className={styles.title}>
           {ellipsis(anime?.title?.english || "") ||

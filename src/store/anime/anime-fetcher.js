@@ -113,7 +113,7 @@ export const fetchTrendingAnimePreview = () => {
         query: GET_ANIME,
         variables: {
           page: 1,
-          perPage: 5,
+          perPage: 20,
           sort: "TRENDING_DESC",
         },
       })
@@ -131,7 +131,7 @@ export const fetchPopularAnimePreview = () => {
         query: GET_ANIME,
         variables: {
           page: 1,
-          perPage: 5,
+          perPage: 20,
           sort: "POPULARITY_DESC",
         },
       })
