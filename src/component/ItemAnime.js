@@ -3,6 +3,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { animeActions } from "../store/anime/anime-slice";
+import { ellipsis } from "../util/helper";
 import styles from "./ItemAnime.module.css";
 import Card from "./ui/Card";
 
@@ -23,12 +24,13 @@ const ItemAnime = React.forwardRef(({ anime }, ref) => {
       <Card className={styles.card}>
         <LazyLoadImage
           width={180}
-          height="auto"
+          height={250}
           src={anime.coverImage.large}
           effect="blur"
         />
         <p className={styles.title}>
-          {anime.title.english || anime.title.romaji}
+          {ellipsis(anime?.title?.english || "") ||
+            ellipsis(anime?.title?.romaji || "")}
         </p>
       </Card>
     </Link>
