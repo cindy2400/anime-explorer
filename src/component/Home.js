@@ -105,7 +105,7 @@ const Home = () => {
       </div>
       <div className={styles["section-two"]}>
         {trendingAnime.map((anime) => (
-          <ItemAnime key={anime.id} anime={anime} />
+          <ItemAnime key={anime.id} page="home" anime={anime} />
         ))}
       </div>
       <div className={styles["section-one"]}>
@@ -120,7 +120,7 @@ const Home = () => {
       </div>
       <div className={styles["section-two"]}>
         {popularAnime.map((anime) => (
-          <ItemAnime key={anime.id} anime={anime} />
+          <ItemAnime key={anime.id} page="home" anime={anime} />
         ))}
       </div>
     </div>

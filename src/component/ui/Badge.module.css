@@ -3,8 +3,9 @@
   height: fit-content;
   padding: 7px;
   margin-bottom: 10px;
+  margin-right: 5px;
   border-radius: 20px;
-  background-color: rgb(25, 34, 125);
+  background-color: #313131;
   color: white;
   font-size: 12px;
 }

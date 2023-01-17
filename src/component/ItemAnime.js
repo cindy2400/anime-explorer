@@ -5,9 +5,10 @@ import { Link } from "react-router-dom";
 import { animeActions } from "../store/anime/anime-slice";
 import { ellipsis } from "../util/helper";
 import styles from "./ItemAnime.module.css";
+import Badge from "./ui/Badge";
 import Card from "./ui/Card";
 
-const ItemAnime = React.forwardRef(({ anime }, ref) => {
+const ItemAnime = React.forwardRef(({ anime, page }, ref) => {
   const dispatch = useDispatch();
 
   const renewDetailHandler = () => {
@@ -18,9 +19,32 @@ const ItemAnime = React.forwardRef(({ anime }, ref) => {
     <Link
       key={anime.id}
       to={`/anime/${anime.id}`}
-      className={styles.link}
+      className={`${styles.link} ${styles.tooltip}`}
       onClick={renewDetailHandler}
     >
+      {/* tooltip */}
+      <div className={page === "home" ? styles.right : styles.top}>
+        <div className={styles["flex-item"]}>
+          <h3 className={styles[`${anime?.season}`]}>{anime.season || "-"}</h3>
+          <Badge
+            class={
+              anime.averageScore > 70
+                ? styles["green-color"]
+                : styles["yellow-color"]
+            }
+          >
+            {anime.averageScore || "-"}%
+          </Badge>
+        </div>
+        <h4>{anime.status}</h4>
+        <p>{anime.episodes || "-"} episodes</p>
+        <div className={styles["flex-item"]}>
+          {anime.genres.map((genre) => (
+            <Badge>{genre}</Badge>
+          ))}
+        </div>
+      </div>
+      {/* end tooltip */}
       <Card className={styles.card}>
         <LazyLoadImage
           width={180}

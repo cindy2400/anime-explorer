@@ -31,6 +31,10 @@ export const GET_ANIME = gql`
         }
         season
         seasonYear
+        averageScore
+        episodes
+        genres
+        status
         coverImage {
           large
           color
