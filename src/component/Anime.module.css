@@ -1,8 +1,8 @@
 .container {
-  margin: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
+  margin: 35px;
 }
 
 .card {
@@ -55,4 +55,31 @@
 .search-filter-title {
   font-size: 14px;
   font-weight: 600;
+}
+
+.format-section {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 70px;
+}
+
+.button-section {
+  margin-top: 50px;
+}
+
+.button-card {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+}
+
+.button-list {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+}
+
+.active-button {
+  background-color: rgb(239, 166, 124);
+  border-color: rgb(250, 71, 40);
 }

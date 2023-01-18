@@ -25,7 +25,9 @@ const ItemAnime = React.forwardRef(({ anime, page }, ref) => {
       {/* tooltip */}
       <div className={page === "home" ? styles.right : styles.top}>
         <div className={styles["flex-item"]}>
-          <h3 className={styles[`${anime?.season}`]}>{anime.season || "-"}</h3>
+          <h3 className={styles[`${anime?.season}`]}>
+            {anime.season ? anime.season + " " + anime.seasonYear : "-"}
+          </h3>
           <Badge
             class={
               anime.averageScore > 70
@@ -37,7 +39,7 @@ const ItemAnime = React.forwardRef(({ anime, page }, ref) => {
           </Badge>
         </div>
         <h4>{anime.status}</h4>
-        <p>{anime.episodes || "-"} episodes</p>
+        <p>{anime.episodes ? anime.episodes + " episodes" : ""}</p>
         <div className={styles["flex-item"]}>
           {anime.genres.map((genre) => (
             <Badge>{genre}</Badge>

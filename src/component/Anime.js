@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { MdGridView, MdViewComfy } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import {
@@ -8,6 +9,7 @@ import {
 import { animeActions } from "../store/anime/anime-slice";
 import styles from "./Anime.module.css";
 import ItemAnime from "./ItemAnime";
+import ItemAnimeWithInfo from "./ItemAnimeWithInfo";
 import Loading from "./ui/Loading";
 import SearchFilterSection from "./ui/SearchFilterSection";
 
@@ -17,6 +19,8 @@ const Anime = ({ type }) => {
   const location = useLocation();
   const animes = useSelector((state) => state.anime.animes);
   const pageInfo = useSelector((state) => state.anime.pageInfo);
+
+  const [layoutFormat, setLayoutFormat] = useState("card");
 
   const queryParams = new URLSearchParams(location.search);
 
@@ -95,9 +99,19 @@ const Anime = ({ type }) => {
 
   const content = animes.map((anime, i) => {
     if (animes.length === i + 1) {
-      return <ItemAnime key={anime.id} ref={lastPostRef} anime={anime} />;
+      if (layoutFormat === "card") {
+        return <ItemAnime key={anime.id} ref={lastPostRef} anime={anime} />;
+      } else {
+        return (
+          <ItemAnimeWithInfo key={anime.id} ref={lastPostRef} anime={anime} />
+        );
+      }
     } else {
-      return <ItemAnime key={anime.id} anime={anime} />;
+      if (layoutFormat === "card") {
+        return <ItemAnime key={anime.id} anime={anime} />;
+      } else {
+        return <ItemAnimeWithInfo key={anime.id} anime={anime} />;
+      }
     }
   });
 
@@ -107,14 +121,35 @@ const Anime = ({ type }) => {
         {type === "trending" ? "TRENDING ANIME" : "POPULAR ANIME"}
       </h3>
 
-      <SearchFilterSection
-        changeSearchTextHandler={changeSearchTextHandler}
-        searchText={searchText}
-        filterSeason={filterSeason}
-        changeFilterSeasonHandler={changeFilterSeasonHandler}
-        genreSelected={genreSelected}
-        changeFilterGenreHandler={changeFilterGenreHandler}
-      />
+      <div className={styles["format-section"]}>
+        <SearchFilterSection
+          changeSearchTextHandler={changeSearchTextHandler}
+          searchText={searchText}
+          filterSeason={filterSeason}
+          changeFilterSeasonHandler={changeFilterSeasonHandler}
+          genreSelected={genreSelected}
+          changeFilterGenreHandler={changeFilterGenreHandler}
+        />
+
+        <div className={styles["button-section"]}>
+          <button
+            onClick={() => setLayoutFormat("card")}
+            className={`${styles["button-card"]} ${
+              layoutFormat === "card" ? styles["active-button"] : ""
+            }`}
+          >
+            <MdViewComfy />
+          </button>
+          <button
+            onClick={() => setLayoutFormat("list")}
+            className={`${styles["button-list"]} ${
+              layoutFormat === "list" ? styles["active-button"] : ""
+            }`}
+          >
+            <MdGridView />
+          </button>
+        </div>
+      </div>
 
       {animes.length === 0 ? (
         <Loading />

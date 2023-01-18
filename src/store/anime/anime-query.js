@@ -32,6 +32,7 @@ export const GET_ANIME = gql`
         season
         seasonYear
         averageScore
+        description
         episodes
         genres
         status

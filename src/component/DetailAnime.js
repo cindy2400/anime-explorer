@@ -60,7 +60,7 @@ const DetailAnime = () => {
               to={`/trending?search=&season=${animeDetail.season}&genre=all`}
               className={styles.link}
             >
-              {animeDetail.season}
+              {animeDetail.season || "-"}
             </Link>
             <h3>Genre</h3>
             {animeDetail.genres.map((genre) => (
@@ -73,17 +73,19 @@ const DetailAnime = () => {
               </Link>
             ))}
             <h3>Status</h3>
-            <p className={styles.paragraph}>{animeDetail.status}</p>
+            <p className={styles.paragraph}>{animeDetail.status || "-"}</p>
             <h3>Episodes</h3>
-            <p className={styles.paragraph}>{animeDetail.episodes}</p>
+            <p className={styles.paragraph}>{animeDetail.episodes || "-"}</p>
             <h3>Format</h3>
-            <p className={styles.paragraph}>{animeDetail.format}</p>
+            <p className={styles.paragraph}>{animeDetail.format || "-"}</p>
             <h3>Duration</h3>
-            <p className={styles.paragraph}>{animeDetail.duration}</p>
+            <p className={styles.paragraph}>{animeDetail.duration || "-"}</p>
             <h3>Average score</h3>
-            <p className={styles.paragraph}>{animeDetail.averageScore}</p>
+            <p className={styles.paragraph}>
+              {animeDetail.averageScore || "-"}
+            </p>
             <h3>Source</h3>
-            <p className={styles.paragraph}>{animeDetail.source}</p>
+            <p className={styles.paragraph}>{animeDetail.source || "-"}</p>
           </Card>
         </div>
 
@@ -109,7 +111,6 @@ const DetailAnime = () => {
               {isFavoriteAnime ? "Remove" : "Favorite"}
             </button>
 
-            <hr></hr>
             <h3>Characters</h3>
             <div className={styles["container-characters"]}>
               {animeDetail.characters.nodes.map((char) => (
@@ -133,7 +134,6 @@ const DetailAnime = () => {
               ))}
             </div>
 
-            <hr></hr>
             <h3>Staff</h3>
             <div className={styles["container-characters"]}>
               {animeDetail.staff.nodes.map((staff) => (
@@ -153,7 +153,6 @@ const DetailAnime = () => {
               ))}
             </div>
 
-            <hr></hr>
             <h3>Trailer</h3>
             {animeDetail.trailer !== null && (
               <iframe
