@@ -41,9 +41,9 @@ const ItemAnime = React.forwardRef(({ anime, page }, ref) => {
         <h4>{anime.status}</h4>
         <p>{anime.episodes ? anime.episodes + " episodes" : ""}</p>
         <div className={styles["flex-item"]}>
-          {anime.genres.map((genre) => (
-            <Badge>{genre}</Badge>
-          ))}
+          {anime.genres[0] ? <Badge>{anime.genres[0]}</Badge> : ""}
+          {anime.genres[1] ? <Badge>{anime.genres[1]}</Badge> : ""}
+          {anime.genres[2] ? <Badge>{anime.genres[2]}</Badge> : ""}
         </div>
       </div>
       {/* end tooltip */}
