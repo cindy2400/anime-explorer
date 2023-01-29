@@ -13,6 +13,11 @@
   font-size: 14px;
 }
 
+.badge {
+  font-weight: 600;
+  margin-top: 8px;
+}
+
 .green-color {
   background-color: rgb(130, 193, 66);
   color: #222222;
@@ -30,6 +35,11 @@
 .flex-item {
   display: flex;
   justify-content: space-between;
+}
+
+.flex-item-genre {
+  display: flex;
+  justify-content: left;
 }
 
 .FALL {
@@ -65,7 +75,7 @@
   transform: translate(-50%, -100%);
   padding: 10px 20px;
   color: #444444;
-  background-color: #eeeeee;
+  background-image: radial-gradient(#f0faf8, #d1fff3);
   font-weight: normal;
   font-size: 13px;
   border-radius: 8px;
@@ -109,7 +119,7 @@
   transform: translate(0, -50%);
   padding: 10px 20px;
   color: #444444;
-  background-color: #eeeeee;
+  background-image: radial-gradient(#f0faf8, #d1fff3);
   font-weight: normal;
   font-size: 13px;
   border-radius: 8px;

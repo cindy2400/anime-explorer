@@ -5,6 +5,7 @@
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   border-radius: 12px;
   margin: 12px;
+  background-image: radial-gradient(#fdfdfd, #d6fff4);
 }
 
 .item-poster {
@@ -51,7 +52,7 @@
 .title {
   color: black;
   margin-bottom: 0;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .link {
@@ -79,25 +80,29 @@
 }
 
 .FALL-bg {
-  background-color: rgb(250, 186, 108);
-  color: black;
+  background-image: linear-gradient(to bottom right, #ebba28, rgb(248, 108, 0));
+  color: white;
   font-weight: 500;
 }
 
 .WINTER-bg {
-  background-color: rgb(151, 151, 237);
-  color: black;
+  background-image: linear-gradient(to bottom right, #6a77ee, blue);
+  color: white;
   font-weight: 500;
 }
 
 .SUMMER-bg {
-  background-color: rgb(236, 136, 156);
-  color: black;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(234, 115, 139),
+    crimson
+  );
+  color: white;
   font-weight: 500;
 }
 
 .SPRING-bg {
-  background-color: rgb(245, 227, 128);
-  color: black;
+  background-image: linear-gradient(to bottom right, rgb(234, 230, 100), gold);
+  color: white;
   font-weight: 500;
 }

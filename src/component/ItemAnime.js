@@ -28,19 +28,11 @@ const ItemAnime = React.forwardRef(({ anime, page }, ref) => {
           <h3 className={styles[`${anime?.season}`]}>
             {anime.season ? anime.season + " " + anime.seasonYear : "-"}
           </h3>
-          <Badge
-            class={
-              anime.averageScore > 70
-                ? styles["green-color"]
-                : styles["yellow-color"]
-            }
-          >
-            {anime.averageScore || "-"}%
-          </Badge>
+          <Badge class={styles.badge}>{anime.averageScore || "-"}%</Badge>
         </div>
         <h4>{anime.status}</h4>
         <p>{anime.episodes ? anime.episodes + " episodes" : ""}</p>
-        <div className={styles["flex-item"]}>
+        <div className={styles["flex-item-genre"]}>
           {anime.genres[0] ? <Badge>{anime.genres[0]}</Badge> : ""}
           {anime.genres[1] ? <Badge>{anime.genres[1]}</Badge> : ""}
           {anime.genres[2] ? <Badge>{anime.genres[2]}</Badge> : ""}
